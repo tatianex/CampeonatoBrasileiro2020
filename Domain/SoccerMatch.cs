@@ -9,12 +9,7 @@ namespace Domain
         public int Team1Goals { get; set; }
         public int Team2Goals { get; set; }
 
-        public void CreateSoccerMatch()
-        {
-
-        }
-
-        public void ShowResults()
+        public void InformeMatchResults()
         {
             
         }
