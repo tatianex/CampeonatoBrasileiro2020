@@ -6,7 +6,7 @@ namespace Domain
     {
         public string Name { get; set; }
         public int Year { get; set; }
-        public int TotalRound { get; set;}
+        public int TotalRound { get; set;} = 7;
 
         public void CreateTeam(List <Player> players)
         {
@@ -18,7 +18,7 @@ namespace Domain
 
         }
 
-        public void ShowResults()
+        public void ShowFinalResults()
         {
 
         }

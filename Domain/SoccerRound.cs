@@ -8,7 +8,7 @@ namespace Domain
         public DateTime BeginingDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public void LaunchResult()
+        public void LaunchRoundResults()
         {
 
         }
