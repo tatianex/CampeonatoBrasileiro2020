@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Domain
 {
@@ -8,11 +9,15 @@ namespace Domain
         public int MinPlayers { get; set; }
         public int MaxPlayers { get; set; }
 
-        public AddPlayer()
+        public void AddPlayer(Player player)
         {
-
+            
         }
-        public RemovePlayer()
+        public void RemovePlayer(Player player)
+        {
+            
+        }
+        public void CreateTeam(List <Player> Players)
         {
             
         }
