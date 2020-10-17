@@ -5,7 +5,7 @@ namespace Domain
 {
     public class Team
     {
-        public string Name { get; set; }
+        public string TeamName { get; set; }
         public int PlayersAmount { get; set; }
 
         public void AddPlayer(Player player)
