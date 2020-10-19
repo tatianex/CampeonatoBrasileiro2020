@@ -14,12 +14,12 @@ namespace Domain
                 Teams = teams;
                 return true;
             }
-            return false;
+            return false;            
         }
 
         private void CreateDispute()
         {
-
+            // var Palmeiras = new Team("Pal", "Palmeiras");
         }
 
         public void ShowFinalResults()
