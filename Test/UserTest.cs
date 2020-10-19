@@ -6,7 +6,7 @@ namespace Test
     public class UserTest
     {
         [Fact]
-        public void should_contains_same_parameters_provided()
+        public void should_contain_same_parameters_provided()
         {
             var name = "Rogério Caboclo";
             var password = "459iMs@;3eZ!8*";
