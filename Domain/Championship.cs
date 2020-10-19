@@ -5,7 +5,7 @@ namespace Domain
     public class Championship
     {
         public int TotalRound { get; set; } = 7;
-        public List<Team> Teams { get; set; }
+        private List<Team> Teams { get; set; }
 
         public bool CreateTeams(List <Team> teams, User user)
         {
@@ -20,6 +20,7 @@ namespace Domain
         private void CreateDispute()
         {
             // var Palmeiras = new Team("Pal", "Palmeiras");
+            //&& _players.Count > 7
         }
 
         public void ShowFinalResults()
