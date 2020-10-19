@@ -10,7 +10,7 @@ namespace Domain
             Fan   // torcedor/usuário
         }
         public string Name { get; set; }
-        public string Password { get; private set; } = "459iMs@;3eZ!8*";
+        public string Password { get; private set; }
         public UserProfile Profile { get; set; }
 
         public User(string name, string password, UserProfile profile)
