@@ -4,14 +4,17 @@ namespace Domain
 {
     public class Championship
     {
-        public int TotalRound { get; set;} = 7;
+        public int TotalRound { get; set; } = 7;
+        public List<Team> Teams { get; set; }
 
-        public void CreateTeam(List <Player> players, User user)
+        public bool CreateTeams(List <Team> teams, User user)
         {
-            if (user.Profile == user)
+            if (user.Profile == User.UserProfile.CBF)
             {
-                players = 
+                Teams = teams;
+                return true;
             }
+            return false;
         }
 
         private void CreateDispute()

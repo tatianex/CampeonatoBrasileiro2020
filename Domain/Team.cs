@@ -5,8 +5,17 @@ namespace Domain
 {
     public class Team
     {
-        public string TeamName { get; set; }
-        public int PlayersAmount { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+
+        public Team(string id, string name, User user)
+        {
+            if (user.Profile == User.UserProfile.CBF)
+            {
+                Id = id;
+                Name = name;
+            }
+        }
 
         public void AddPlayer(Player player)
         {
