@@ -19,13 +19,22 @@ namespace Domain
         private List<Player> _players { get; set; }
         public IReadOnlyCollection<Player> Players => _players;
 
-        public void AddPlayer(Player player)
+        public bool AddPlayer(Player player, User user)
         {
-            
+            if (user.Profile == User.UserProfile.CBF && _players.Count < 32)
+            {
+                var SamePlayer = _players.First(x => x.Name == player.Name);
+                return false;                
+            }
+            else
+            {
+                _players.Add(player);
+                return true;
+            }           
         }
         public bool RemovePlayer(string name, User user)
         {
-            if (user.Profile == User.UserProfile.CBF)
+            if (user.Profile == User.UserProfile.CBF && _players.Count > 16)
             {    
                 var RemovedPlayer = _players.First(x => x.Name == name);
                 _players.Remove(RemovedPlayer);
