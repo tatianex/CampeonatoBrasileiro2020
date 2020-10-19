@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain
 {
@@ -22,9 +23,15 @@ namespace Domain
         {
             
         }
-        public void RemovePlayer(Player player)
+        public bool RemovePlayer(string name, User user)
         {
-            
+            if (user.Profile == User.UserProfile.CBF)
+            {    
+                var RemovedPlayer = _players.First(x => x.Name == name);
+                _players.Remove(RemovedPlayer);
+                return true;
+            }
+            return false;
         }
     }
 }
