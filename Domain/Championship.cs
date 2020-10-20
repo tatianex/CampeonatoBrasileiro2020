@@ -17,10 +17,12 @@ namespace Domain
             return false;            
         }
 
-        private void CreateDispute()
+        private void CreateRounds(List <Team> teams, User user)
         {
-            // var Palmeiras = new Team("Pal", "Palmeiras");
-            //&& _players.Count > 7
+            if (user.Profile == User.UserProfile.CBF && teams.Count > 7)
+            {
+                //Criar automaticamente uma lista tuplas onde cada time joga com os outros 1 vez.
+            }
         }
 
         public void ShowFinalResults()
