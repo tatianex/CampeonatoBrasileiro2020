@@ -6,7 +6,7 @@ namespace Domain
     {
         public int TotalRound { get; set; } = 7;
         private List<Team> Teams { get; set; }
-
+        
         public bool CreateTeams(List <Team> teams, User user)
         {
             if (user.Profile == User.UserProfile.CBF)

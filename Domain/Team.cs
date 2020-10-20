@@ -8,6 +8,8 @@ namespace Domain
     {  
         public Guid Id { get; private set; } = Guid.NewGuid();
         public string Name { get; set; }
+        private List<Player> _players { get; set; }
+        public IReadOnlyCollection<Player> Players => _players;
 
         public Team(Guid id, string name)
         {
@@ -16,9 +18,7 @@ namespace Domain
             Id = id;
             Name = name;            
         }
-        private List<Player> _players { get; set; }
-        public IReadOnlyCollection<Player> Players => _players;
-
+        
         public bool AddPlayer(Player player, User user)
         {
             if (user.Profile == User.UserProfile.CBF && _players.Count < 32)
@@ -32,6 +32,7 @@ namespace Domain
                 return true;
             }           
         }
+        
         public bool RemovePlayer(string name, User user)
         {
             if (user.Profile == User.UserProfile.CBF && _players.Count > 16)
