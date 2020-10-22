@@ -12,11 +12,20 @@ namespace Domain
 
         public SoccerRound(int round, List<Team> teams, User user) 
         {
-            if ((user.Profile == User.UserProfile.CBF) && (teams.Count > 7) && (teams.Count % 2 == 0))
+            if (
+                (user.Profile == User.UserProfile.CBF)
+                && (teams.Count > 7)
+                && (teams.Count % 2 == 0)
+            )
             {
                 var sizeOfRoundGroup = teams.Count / 2;
                 var totalRounds = teams.Count - 1;
                 var actualRound = 1;
+
+                var games = teams.Count -1 * 4;
+                var sortition = new Random();
+                sortition.Next(games);
+
                 
                 for (int team1 = 0; team1 <= totalRounds; team1++)
                 {                  
