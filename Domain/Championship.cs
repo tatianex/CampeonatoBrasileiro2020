@@ -19,11 +19,40 @@ namespace Domain
             return false;            
         }
 
-        private void CreateRounds(List<Team> teams, User user)
+        public CreateRounds(List<Team> groupA, List<Team> groupB, User user)
         {
-            for (int round = 0; round < teams.Count - 1; round++)
+            
+            if (
+                (user.Profile == User.UserProfile.CBF)
+                && (groupA.Count > 3)
+                && (groupB.Count == groupA.Count)
+                && ((groupA.Count + groupB.Count) % 2 == 0)
+            )
             {
-                _rounds.Add(new SoccerRound(round, teams, user));
+                var amountOfGamesPerRound = groupA.Count;
+                var totalRounds = (groupA.Count + groupB.Count) - 1;
+                var actualRound = 1
+
+                var games = ((groupA.Count + groupB.Count) -1) * amountOfGamesPerRound;
+                // var sortition = new Random();
+                // sortition.Next(games);
+
+                for (var i = 0; i < totalRounds; i++)
+                {
+                    for (int team1 = 0; team1 <= amountOfGamesPerRound; team1++)
+                    {                  
+                        for (int team2 = amountOfGamesPerRound; team2 >= 0; team2--)
+                        {
+                            if (groupA[team1].Id != groupB[team2].Id)
+                            {
+                                RoundGames.Add((groupA[team1], groupB[team2]));
+                                break;
+                            }
+                        }
+                    }
+                    actualRound++;
+                    // Usar add e remove nas listas.
+                }
             }
         }
 
