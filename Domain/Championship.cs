@@ -28,6 +28,8 @@ namespace Domain
                 && (Teams.Count % 2 == 0)
             )
             {
+                // Embaralha a lista de times
+                Tools.Shuffle(Teams);
                 // Seleciona o time e divide em dois gerando o tamanho dos grupos
                 // E o total de jogos da rodada
                 var sizeOfGroup = Teams.Count / 2;
@@ -37,11 +39,11 @@ namespace Domain
                 var groupA = Teams.Take(sizeOfGroup).ToList();
                 // Grupo B recebe a última metade da lista de times
                 var groupB = Teams.Skip(sizeOfGroup).Take(sizeOfGroup).ToList();
-                // Os times do Grupo B são selecionados da última para a primeira posição
-                var teamB = groupB.Count - 1;    
                 
-                for (var actualRound = 1; actualRound < totalRounds; actualRound++)
+                for (var actualRound = 1; actualRound <= totalRounds; actualRound++)
                 {
+                    // Os times do Grupo B são selecionados da última para a primeira posição
+                    var teamB = groupB.Count - 1;    
                     // Loop que preenche a lista de jogos de uma rodada
                     for (int teamA = 0; teamA < sizeOfGroup; teamA++)
                     {
