@@ -11,7 +11,7 @@ namespace Domain
         public int TeamDefeats { get; set; }
         public int Ties { get; set; }
         public int GoalsOutcome { get; set; }
-        public int ProperGoals { get; set; }
+        public int Goals { get; set; }
         public int OwnGoals { get; set; }
         public double EfficiencyPercent { get; set; }
         public List<Player> TopScorer { get; set; }

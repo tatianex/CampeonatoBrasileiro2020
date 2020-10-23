@@ -20,10 +20,7 @@ namespace Domain
                 Team2 = team2;
             }
         }
-        public void InformMatchResults()
-        {
-            
-        }
+        
 
     }
 }

@@ -10,6 +10,14 @@ namespace Domain
         public string Name { get; set; }
         private List<Player> _players { get; set; }
         public IReadOnlyCollection<Player> Players => _players;
+        public int DisputedMatches { get; set; }
+        public int TeamPoints { get; set; }
+        public int TeamVictories { get; set; }
+        public int TeamDefeats { get; set; }
+        public int Ties { get; set; }
+        public int GoalsOutcome { get; set; }
+        public int Goals { get; set; }
+        public int concededGoals { get; set; }
 
         public Team(string name)
         {

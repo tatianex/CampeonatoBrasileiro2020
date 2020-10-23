@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using System;
 
 namespace Domain
 {
@@ -70,6 +71,49 @@ namespace Domain
                     }
                 }
             }
+        }
+
+        public void CreateMatchResults(User user, int round, Team team1, Team team2)
+        {
+            var randomGoals = new Random();
+            if ((user.Profile == User.UserProfile.CBF) && (team1.Id != team2.Id))
+            {
+                team1.DisputedMatches++;
+                team2.DisputedMatches++;
+
+                int team1Goals = randomGoals.Next(0, 6);
+                int team2Goals = randomGoals.Next(0, 6);
+                
+                team1.Goals += team1Goals;
+                team2.Goals += team2Goals;
+
+                team1.concededGoals += team2Goals;
+                team2.concededGoals += team1Goals;
+
+                team1.GoalsOutcome += team1Goals - team2Goals;
+                team2.GoalsOutcome += team2Goals - team1Goals;
+
+                if (team1Goals == team2Goals)
+                {
+                    team1.TeamPoints++;
+                    team2.TeamPoints++;
+                    team1.Ties++;
+                    team2.Ties++;
+                }
+                else if (team1Goals > team2Goals)
+                {
+                    team1.TeamPoints += 3;
+                    team1.TeamVictories++;
+                    team2.TeamDefeats++;
+                }
+                else
+                {
+                    team2.TeamPoints += 3;
+                    team2.TeamVictories++;
+                    team1.TeamDefeats++;
+                }
+            }
+            
         }
 
         public void ShowFinalResults()
