@@ -16,26 +16,26 @@ namespace Domain
             // Lista privada para acesso do torcedor
             _players = new List<Player>();
             Id = id;
-            Name = name;            
+            Name = name;
         }
         
         public bool AddPlayer(Player player, User user)
         {
-            if (user.Profile == User.UserProfile.CBF && _players.Count < 32)
-            {
-                var SamePlayer = _players.First(x => x.Name == player.Name);
-                return false;                
-            }
-            else
+            var playerAlreadyExists = _players.FirstOrDefault(x => x.Name == player.Name);
+
+            if ((user.Profile == User.UserProfile.CBF)
+                && (_players.Count < 32)
+                && (playerAlreadyExists == null))
             {
                 _players.Add(player);
-                return true;
-            }           
+                return true;                
+            }
+            return false;          
         }
         
         public bool RemovePlayer(string name, User user)
         {
-            if (user.Profile == User.UserProfile.CBF && _players.Count > 16)
+            if (user.Profile == User.UserProfile.CBF)
             {    
                 var RemovedPlayer = _players.First(x => x.Name == name);
                 _players.Remove(RemovedPlayer);
@@ -43,7 +43,7 @@ namespace Domain
             }
             return false;
         }
-
+        
         public bool ValidatePlayersAmount()
         {
             if (_players.Count >= 16 && _players.Count <= 32)

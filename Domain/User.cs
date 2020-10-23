@@ -4,6 +4,7 @@ namespace Domain
 {
     public class User
     {
+        public Guid Id { get; set; } = new Guid();
         public enum UserProfile
         {
             CBF,  // admin
