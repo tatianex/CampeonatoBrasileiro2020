@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Domain
 {
@@ -42,7 +43,7 @@ namespace Domain
                 for (var actualRound = 1; actualRound < totalRounds; actualRound++)
                 {
                     // Loop que preenche a lista de jogos de uma rodada
-                    for (int teamA = 0; teamA <= sizeOfGroup - 1; teamA++)
+                    for (int teamA = 0; teamA < sizeOfGroup; teamA++)
                     {
                         var game = new Game(actualRound, groupA[teamA], groupB[teamB], user);
                         Games.Add(game);
@@ -57,6 +58,14 @@ namespace Domain
                     groupB.Insert(0, groupA[groupA.Count - 1]);
                     // Remove o úlimo time do Grupo A
                     groupA.RemoveAt(groupA.Count - 1);            
+                }
+                
+                using (StreamWriter file = new StreamWriter(@"D:\DOCS\Dev\PROWAY\C#\jogos.txt"))
+                {
+                    for (int line = 0; line < Games.Count; line++)
+                    {
+                        file.WriteLine($"Rodada: {Games[line].Round}: Jogo: {Games[line].Team1.Name} x {Games[line].Team2.Name}");
+                    }
                 }
             }
         }

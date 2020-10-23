@@ -11,11 +11,10 @@ namespace Domain
         private List<Player> _players { get; set; }
         public IReadOnlyCollection<Player> Players => _players;
 
-        public Team(Guid id, string name)
+        public Team(string name)
         {
             // Lista privada para acesso do torcedor
             _players = new List<Player>();
-            Id = id;
             Name = name;
         }
         
