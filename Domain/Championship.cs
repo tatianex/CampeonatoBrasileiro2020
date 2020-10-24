@@ -11,11 +11,10 @@ namespace Domain
         public IReadOnlyCollection<Game> Games => _games;
         private List<Team> _teams { get; set; }
         public IReadOnlyCollection<Team> Teams => _teams;
+        
         public Championship(List<Team> teams, User user)
         {
-            if ((user.Profile == User.UserProfile.CBF)
-                && (teams.Count > 7)
-                && (teams.Count % 2 == 0))
+            if ((user.Profile == User.UserProfile.CBF) && (teams.Count > 7))
             {
                 var validTeam = false;
                 
@@ -51,13 +50,20 @@ namespace Domain
         
         public void CreateRounds(User user)
         {            
-            if ((user.Profile == User.UserProfile.CBF)
-                && (Teams.Count > 7)
-                && (Teams.Count % 2 == 0)
-            )
+            if ((user.Profile == User.UserProfile.CBF) && (Teams.Count > 7))
             {
                 // Embaralha a lista de times
                 Tools.Shuffle(_teams);
+                /*
+                    Se o total de times for ímpar, é inserido um "time falso" 
+                    indicando que o time que for sorteado junto com o competidor 
+                    "Fora da rodada" vai descansar naquela rodada, iniciando pelo
+                    primeiro time sorteado na primeira rodada
+                */
+                if (_teams.Count % 2 != 0)
+                {
+                    _teams.Insert(0, new Team("Fora da rodada!"));
+                }
                 // Seleciona o time e divide em dois gerando o tamanho dos grupos
                 // E o total de jogos da rodada
                 var sizeOfGroup = _teams.Count / 2;
@@ -90,6 +96,7 @@ namespace Domain
                     groupA.RemoveAt(groupA.Count - 1);            
                 }
                 
+                // Criando um arquivo .txt com os confrontos de todas as rodadas
                 using (StreamWriter file = new StreamWriter(@"D:\DOCS\Dev\PROWAY\C#\jogos.txt"))
                 {
                     for (int line = 0; line < Games.Count; line++)

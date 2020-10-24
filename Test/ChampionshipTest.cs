@@ -76,13 +76,13 @@ namespace Test
             return mockTeams.Take(amount).ToList();
         }
         
-        [Fact]
+        /* [Fact]
         public void should_do_something()
         {
             var user = new User("Tatiane", "password", User.UserProfile.CBF);
         
             var soccer = new Championship(teams, user);
             soccer.CreateRounds(user);
-        }
+        } */
     }
 }

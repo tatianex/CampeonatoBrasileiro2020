@@ -10,6 +10,10 @@
 
 * R4. O campeonato deve gerar automaticamente os confrontos entre os times.
 
+Para criar o método que gera os confrontos utilizamos as orientações da seguinte pesquisa:
+- [Wikipedia](https://pt.wikipedia.org/wiki/Competi%C3%A7%C3%B5es_de_todos_contra_todos)
+Uma competição de "todos contra todos" também conhecida como sistema de pontos corridos, onde na nossa aplicação funciona no esquema de turno único.
+
 * R5. Após os confrontos serem gerados, será necessário que o resultado dos jogos sejam informados, rodada por rodada. (CBF)
 
 * R6. Cada time pode remover ou adicionar jogadores durante o decorrer do campeonato, tendo um limite mínimo e máximo de, respectivamente, 16 e 32 jogadores. (CBF)
