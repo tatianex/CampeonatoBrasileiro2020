@@ -51,15 +51,6 @@ namespace Domain
             }
             return false;
         }
-        
-        public bool ValidatePlayersAmount()
-        {
-            if (_players.Count >= 16 && _players.Count <= 32)
-            {
-                return true;
-            }
-            return false;
-        }
 
         public void GetEfficiency(SoccerRound round, Team team, User user)
         {

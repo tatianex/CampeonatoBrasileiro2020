@@ -16,7 +16,25 @@ namespace Domain
                 && (teams.Count > 7)
                 && (teams.Count % 2 == 0))
             {
-                Teams = teams;
+                var validTeam = false;
+                
+                for (int actualTeam = 0; actualTeam < teams.Count; actualTeam++)
+                {
+                    var totalTeamPlayers = teams[actualTeam].Players.Count;
+                    if ((totalTeamPlayers > 15) && (totalTeamPlayers < 33))
+                    {
+                        validTeam = true;
+                    }
+                    else
+                    {
+                        validTeam = false;
+                        break;
+                    }
+                }
+
+                if (validTeam) Teams = teams;
+                else throw new System.Exception("Os times precisam ter entre 16 e 32 jogadores");
+
                 Games = new List<Game>();
             }
             else throw new System.Exception("Total de times deve ser par e > 7 e usuário CBF");
