@@ -59,12 +59,7 @@ namespace Domain
                 round.RoundNumber = round;
                 //double EfficiencyPercent = TeamPoints / totalPossiblePoints (quantidade de jogos * 3) * 100;
 
-            
-
-            }
-            
-            
-             
+            }             
         }
     }
 }

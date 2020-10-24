@@ -7,9 +7,10 @@ namespace Domain
 {
     public class Championship
     {
-        public List<Team> Teams { get; set; }
-        public List<Game> Games { get; set; }
-        
+        private List<Game> _games { get; set; }
+        public IReadOnlyCollection<Game> Games => _games;
+        private List<Team> _teams { get; set; }
+        public IReadOnlyCollection<Team> Teams => _teams;
         public Championship(List<Team> teams, User user)
         {
             if ((user.Profile == User.UserProfile.CBF)
@@ -32,10 +33,18 @@ namespace Domain
                     }
                 }
 
-                if (validTeam) Teams = teams;
+                if (validTeam)
+                {
+                    // Cria uma lista vazia de Times do campeonato
+                    _teams = new List<Team>();
+
+                    // Preenche a lista vazia que foi criada
+                    // com os times passados por parâmetro
+                    _teams = teams;
+                } 
                 else throw new System.Exception("Os times precisam ter entre 16 e 32 jogadores");
 
-                Games = new List<Game>();
+                _games = new List<Game>();
             }
             else throw new System.Exception("Total de times deve ser par e > 7 e usuário CBF");
         }
@@ -48,16 +57,16 @@ namespace Domain
             )
             {
                 // Embaralha a lista de times
-                Tools.Shuffle(Teams);
+                Tools.Shuffle(_teams);
                 // Seleciona o time e divide em dois gerando o tamanho dos grupos
                 // E o total de jogos da rodada
-                var sizeOfGroup = Teams.Count / 2;
+                var sizeOfGroup = _teams.Count / 2;
                 // Calcula o total de rodadas do campeonato
-                var totalRounds = Teams.Count - 1;
+                var totalRounds = _teams.Count - 1;
                 // Grupo A recebe a primeira metade da lista de times
-                var groupA = Teams.Take(sizeOfGroup).ToList();
+                var groupA = _teams.Take(sizeOfGroup).ToList();
                 // Grupo B recebe a última metade da lista de times
-                var groupB = Teams.Skip(sizeOfGroup).Take(sizeOfGroup).ToList();
+                var groupB = _teams.Skip(sizeOfGroup).Take(sizeOfGroup).ToList();
                 
                 for (var actualRound = 1; actualRound <= totalRounds; actualRound++)
                 {
@@ -67,7 +76,7 @@ namespace Domain
                     for (int teamA = 0; teamA < sizeOfGroup; teamA++)
                     {
                         var game = new Game(actualRound, groupA[teamA], groupB[teamB], user);
-                        Games.Add(game);
+                        _games.Add(game);
                         teamB--;
                     }
 
@@ -85,7 +94,7 @@ namespace Domain
                 {
                     for (int line = 0; line < Games.Count; line++)
                     {
-                        file.WriteLine($"Rodada: {Games[line].Round}: Jogo: {Games[line].Team1.Name} x {Games[line].Team2.Name}");
+                        file.WriteLine($"Rodada: {_games[line].Round}: Jogo: {_games[line].Team1.Name} x {_games[line].Team2.Name}");
                     }
                 }
             }
