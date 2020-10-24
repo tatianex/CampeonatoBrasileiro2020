@@ -13,12 +13,17 @@ namespace Domain
 
         public void LaunchRoundResults()
         {
-            
+
         }
 
         public void GetTopScorer()
         {
 
+        }
+
+        public static implicit operator int(SoccerRound v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
