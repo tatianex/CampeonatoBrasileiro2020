@@ -114,11 +114,13 @@ namespace Domain
             }
         }
 
-        public void CreateMatchResults(User user, int round, Team team1, Team team2)
+        public void CreateMatchResults(User user, SoccerRound round, Team team1, Team team2)
         {
             var randomGoals = new Random();
             if ((user.Profile == User.UserProfile.CBF) && (team1.Id != team2.Id))
             {
+                //round.RoundNumber - Incrementar o round no teste, a cada 4 rodadas??
+
                 team1.DisputedMatches++;
                 team2.DisputedMatches++;
 
@@ -153,6 +155,9 @@ namespace Domain
                     team2.TeamVictories++;
                     team1.TeamDefeats++;
                 }
+
+                team1.EfficiencyPercent = team1.GetEfficiency(round, team1, user);
+                team2.EfficiencyPercent = team2.GetEfficiency(round, team2, user);
             }
             
         }

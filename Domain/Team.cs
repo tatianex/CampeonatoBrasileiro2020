@@ -52,14 +52,11 @@ namespace Domain
             return false;
         }
 
-        public void GetEfficiency(SoccerRound round, Team team, User user)
+        public double GetEfficiency(SoccerRound round, Team team, User user)
         {
-            if (user.Profile == User.UserProfile.CBF || user.Profile == User.UserProfile.Fan)
-            {  
-                round.RoundNumber = round;
-                //double EfficiencyPercent = TeamPoints / totalPossiblePoints (quantidade de jogos * 3) * 100;
-
-            }             
+            round.RoundNumber = round;
+            int totalPossiblePoints = team.DisputedMatches * 3;
+            return team.TeamPoints / totalPossiblePoints * 100;
         }
     }
 }
