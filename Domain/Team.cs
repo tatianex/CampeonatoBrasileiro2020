@@ -20,11 +20,11 @@ namespace Domain
         public int concededGoals { get; set; }
         public double EfficiencyPercent { get; set; }
 
-        public Team(string name)
+        public Team(string name, List<Player> players)
         {
-            // Lista privada para acesso do torcedor
-            _players = new List<Player>();
             Name = name;
+            // Lista privada para acesso do torcedor
+            _players = players;
         }
         
         public bool AddPlayer(Player player, User user)

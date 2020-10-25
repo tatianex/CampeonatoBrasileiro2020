@@ -46,43 +46,48 @@ namespace Test
             return mockPlayers.Take(amount).ToList();
         }
         
-        public List<Team> GetMockTeams(int amount)
+        public List<Team> GetMockTeams(int amount, User user)
         {
+            var players = new List<Player>();
+            players = GetMockPlayers(16, user);
+
             var mockTeams = new List<Team>
             {
-                new Team("Goiás"),
-                new Team("Coritiba"),
-                new Team("Athletico-PR"),
-                new Team("Vasco"),
-                new Team("Botafogo"),
-                new Team("Bragantino"),
-                new Team("Ceará-SC"),
-                new Team("Bahia"),
-                new Team("Sport"),
-                new Team("Grêmio"),
-                new Team("Corinthians"),
-                new Team("Atlético-GO"),
-                new Team("Palmeiras"),
-                new Team("Fortaleza"),
-                new Team("Fluminense"),
-                new Team("Santos"),
-                new Team("São Paulo"),
-                new Team("Atlético-MG"),
-                new Team("Flamengo"),
-                new Team("Internacional")
+                new Team("Goiás", players),
+                new Team("Coritiba", players),
+                new Team("Athletico-PR", players),
+                new Team("Vasco", players),
+                new Team("Botafogo", players),
+                new Team("Bragantino", players),
+                new Team("Ceará-SC", players),
+                new Team("Bahia", players),
+                new Team("Sport", players),
+                new Team("Grêmio", players),
+                new Team("Corinthians", players),
+                new Team("Atlético-GO", players),
+                new Team("Palmeiras", players),
+                new Team("Fortaleza", players),
+                new Team("Fluminense", players),
+                new Team("Santos", players),
+                new Team("São Paulo", players),
+                new Team("Atlético-MG", players),
+                new Team("Flamengo", players),
+                new Team("Internacional", players)
 
             };
 
             return mockTeams.Take(amount).ToList();
         }
         
-        /* [Fact]
-        public void should_do_something()
+        [Fact]
+        public void should_return_true_when_size_of_teams_and_players_are_correct()
         {
             var user = new User("Tatiane", "password", User.UserProfile.CBF);
-        
+            var teams = GetMockTeams(8, user);
+
             var soccer = new Championship(teams, user);
-            soccer.CreateRounds(user);
-        } */
+
+            Assert.NotEmpty(soccer.Teams);
+        }
     }
 }

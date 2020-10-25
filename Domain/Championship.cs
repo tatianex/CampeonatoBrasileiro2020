@@ -62,7 +62,7 @@ namespace Domain
                 */
                 if (_teams.Count % 2 != 0)
                 {
-                    _teams.Insert(0, new Team("Fora da rodada!"));
+                    _teams.Insert(0, new Team("Fora da rodada!", null));
                 }
                 // Seleciona o time e divide em dois gerando o tamanho dos grupos
                 // E o total de jogos da rodada
@@ -99,8 +99,15 @@ namespace Domain
                 // Criando um arquivo .txt com os confrontos de todas as rodadas
                 using (StreamWriter file = new StreamWriter(@"D:\DOCS\Dev\PROWAY\C#\jogos.txt"))
                 {
+                    var actualRound = _games[0].Round;
+
                     for (int line = 0; line < Games.Count; line++)
                     {
+                        if (actualRound != _games[line].Round)
+                        {
+                            file.Write("\r\n");
+                            actualRound = _games[line].Round;
+                        }
                         file.WriteLine($"Rodada: {_games[line].Round}: Jogo: {_games[line].Team1.Name} x {_games[line].Team2.Name}");
                     }
                 }
