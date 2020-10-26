@@ -52,9 +52,9 @@ namespace Domain
             return false;
         }
 
-        public double GetEfficiency(SoccerRound round, Team team, User user)
+        public double GetEfficiency(Team team, User user)
         {
-            round.RoundNumber = round;
+            
             int totalPossiblePoints = team.DisputedMatches * 3;
             return team.TeamPoints / totalPossiblePoints * 100;
         }

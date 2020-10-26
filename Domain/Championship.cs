@@ -71,8 +71,8 @@ namespace Domain
                 var totalRounds = _teams.Count - 1;
                 // Grupo A recebe a primeira metade da lista de times
                 var groupA = _teams.Take(sizeOfGroup).ToList();
-                // Grupo B recebe a última metade da lista de times
-                var groupB = _teams.Skip(sizeOfGroup).Take(sizeOfGroup).ToList();
+                // Grupo B recebe a segunda metade da lista de times
+                var groupB = _teams.TakeLast(sizeOfGroup).ToList();
                 
                 for (var actualRound = 1; actualRound <= totalRounds; actualRound++)
                 {
@@ -114,7 +114,7 @@ namespace Domain
             }
         }
 
-        public void CreateMatchResults(User user, SoccerRound round, Team team1, Team team2)
+        /* public void CreateMatchResults(User user, int round, Team team1, Team team2)
         {
             var randomGoals = new Random();
             if ((user.Profile == User.UserProfile.CBF) && (team1.Id != team2.Id))
@@ -160,6 +160,36 @@ namespace Domain
                 team2.EfficiencyPercent = team2.GetEfficiency(round, team2, user);
             }
             
+        } */
+
+        public bool LaunchRoundResults(int round, List<Game> gamesResults, User user)
+        {
+            if (user.Profile == User.UserProfile.CBF)
+            {
+                var gamesRoundOfficial = new List<Game>();
+                gamesRoundOfficial = _games.Where(x => x.Round == round).ToList();
+
+                for (var i = 0; i < gamesResults.Count; i++)
+                {
+                    if (gamesRoundOfficial[i].Id != gamesResults[i].Id)
+                    {
+                        throw new Exception("Jogos da rodada não coincidem!");
+                    }
+                }
+
+                for (var actualGame = 0; actualGame < gamesResults.Count; actualGame++) 
+                {
+                    // informa o resultado do jogo
+                    var game = _games.IndexOf(gamesResults[actualGame]);
+                    _games[game].Team1Goals = gamesResults[actualGame].Team1Goals;
+                    _games[game].Team2Goals = gamesResults[actualGame].Team2Goals;
+
+                    _games[game].Team1.TeamVictories 
+                }
+
+                return true;
+            }
+            else return false;
         }
 
         public void ShowFinalResults()

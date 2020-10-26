@@ -89,5 +89,32 @@ namespace Test
 
             Assert.NotEmpty(soccer.Teams);
         }
+
+         [Fact]
+        public void should_return_true_when_launched_results_are_correct()
+        {
+            // Cria times e campeonato
+            var user = new User("Tatiane", "password", User.UserProfile.CBF);
+            var teams = GetMockTeams(8, user);
+            var soccer = new Championship(teams, user);
+
+            var results = new List<Game>();
+            results = soccer.Games.Where(x => x.Round == 1).ToList();
+
+            // resultados dos jogos da rodada 1
+            results[0].Team1Goals = 3;
+            results[0].Team2Goals = 2;
+            results[1].Team1Goals = 1;
+            results[1].Team2Goals = 0;
+            results[2].Team1Goals = 2;
+            results[2].Team2Goals = 4;
+            results[3].Team1Goals = 0;
+            results[3].Team2Goals = 0;
+
+            // lança os resultados da rodada 1
+            soccer.LaunchRoundResults(1, results, user);
+
+            Assert.NotEmpty(soccer.Teams);
+        }       
     }
 }
