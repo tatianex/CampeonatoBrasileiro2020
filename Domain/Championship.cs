@@ -116,45 +116,6 @@ namespace Domain
 
         /* public void CreateMatchResults(User user, int round, Team team1, Team team2)
         {
-            var randomGoals = new Random();
-            if ((user.Profile == User.UserProfile.CBF) && (team1.Id != team2.Id))
-            {
-                //round.RoundNumber - Incrementar o round no teste, a cada 4 rodadas??
-
-                team1.DisputedMatches++;
-                team2.DisputedMatches++;
-
-                int team1Goals = randomGoals.Next(0, 6);
-                int team2Goals = randomGoals.Next(0, 6);
-                
-                team1.Goals += team1Goals;
-                team2.Goals += team2Goals;
-
-                team1.concededGoals += team2Goals;
-                team2.concededGoals += team1Goals;
-
-                team1.GoalsOutcome += team1Goals - team2Goals;
-                team2.GoalsOutcome += team2Goals - team1Goals;
-
-                if (team1Goals == team2Goals)
-                {
-                    team1.TeamPoints++;
-                    team2.TeamPoints++;
-                    team1.Ties++;
-                    team2.Ties++;
-                }
-                else if (team1Goals > team2Goals)
-                {
-                    team1.TeamPoints += 3;
-                    team1.TeamVictories++;
-                    team2.TeamDefeats++;
-                }
-                else
-                {
-                    team2.TeamPoints += 3;
-                    team2.TeamVictories++;
-                    team1.TeamDefeats++;
-                }
 
                 team1.EfficiencyPercent = team1.GetEfficiency(round, team1, user);
                 team2.EfficiencyPercent = team2.GetEfficiency(round, team2, user);
@@ -166,6 +127,12 @@ namespace Domain
         {
             if (user.Profile == User.UserProfile.CBF)
             {
+                /*
+                    Verificar se os times que estamos inserindo
+                    são iguais aos times registrados na rodada
+                    Ex: Estou querendo colocar o resultado do jogo do time A com B
+                    Preciso verificar se o primeiro jogo era realmente de A com B
+                */ 
                 var gamesRoundOfficial = new List<Game>();
                 gamesRoundOfficial = _games.Where(x => x.Round == round).ToList();
 
@@ -177,14 +144,64 @@ namespace Domain
                     }
                 }
 
+                // Loop para inserir os resultados dos jogos da rodada
+                // E o cálculo da tabela de pontos do campeonato por time
                 for (var actualGame = 0; actualGame < gamesResults.Count; actualGame++) 
                 {
-                    // informa o resultado do jogo
+                    // Informa o resultado do jogo atual
+                    
+                    // game trás a posição do confronto na lista oficial de jogos _games
+                    // e nessa posição é inserido o resultado do confronto atual
+                    // que é passado pelo parâmetro gamesResults
+                    
                     var game = _games.IndexOf(gamesResults[actualGame]);
                     _games[game].Team1Goals = gamesResults[actualGame].Team1Goals;
                     _games[game].Team2Goals = gamesResults[actualGame].Team2Goals;
 
-                    _games[game].Team1.TeamVictories 
+                    // Lança os resultados e calcula os pontos dos times do jogo atual
+
+                    // Jogos disputados
+                    _games[game].Team1.DisputedMatches++;
+                    _games[game].Team2.DisputedMatches++;
+
+                    // Total de gols do time
+                    _games[game].Team1.Goals += _games[game].Team1Goals;
+                    _games[game].Team2.Goals += _games[game].Team2Goals;
+
+                    // Total de gols sofridos
+                    _games[game].Team1.ConcededGoals += _games[game].Team2Goals;
+                    _games[game].Team2.ConcededGoals += _games[game].Team1Goals;
+                
+                    // Saldo de gols recebe os gols feitos menos os gols sofridos
+                    _games[game].Team1.GoalsOutcome += _games[game].Team1Goals - _games[game].Team2Goals;
+                    _games[game].Team2.GoalsOutcome += _games[game].Team2Goals - _games[game].Team1Goals;
+                
+                    if (_games[game].Team1Goals == _games[game].Team2Goals)
+                    {
+                        // Quando há empate cada um dos times recebe um ponto
+                        // e incrementa o histórico de empates
+                        _games[game].Team1.Points++;
+                        _games[game].Team2.Points++;
+                        _games[game].Team1.Draws++;
+                        _games[game].Team2.Draws++;
+                    }
+                    else if (_games[game].Team1Goals > _games[game].Team2Goals)
+                    {
+                        // Quando o time1 tem mais gols que 2º este recebe 3 pontos
+                        // e incrementa suas vitórias e aumenta o histórico de derrotas do outro time
+                        _games[game].Team1.Points += 3;
+                        _games[game].Team1.Victories++;
+                        _games[game].Team2.Defeats++;
+                    }
+                    else
+                    {
+                        // Quando o time2 tem mais gols que o primeiro ele recebe 3 pontos
+                        // e incrementa suas vitórias e aumenta o histórico de derrotas do outro time
+                        _games[game].Team2.Points += 3;
+                        _games[game].Team2.Victories++;
+                        _games[game].Team1.Defeats++;
+                    }
+                
                 }
 
                 return true;
@@ -192,7 +209,7 @@ namespace Domain
             else return false;
         }
 
-        public void ShowFinalResults()
+        public void Scorecard()
         {
 
         }

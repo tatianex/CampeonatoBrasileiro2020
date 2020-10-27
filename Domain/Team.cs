@@ -11,13 +11,13 @@ namespace Domain
         private List<Player> _players { get; set; }
         public IReadOnlyCollection<Player> Players => _players;
         public int DisputedMatches { get; set; }
-        public int TeamPoints { get; set; }
-        public int TeamVictories { get; set; }
-        public int TeamDefeats { get; set; }
-        public int Ties { get; set; }
+        public int Points { get; set; }
+        public int Victories { get; set; }
+        public int Defeats { get; set; }
+        public int Draws { get; set; }
         public int GoalsOutcome { get; set; }
         public int Goals { get; set; }
-        public int concededGoals { get; set; }
+        public int ConcededGoals { get; set; }
         public double EfficiencyPercent { get; set; }
 
         public Team(string name, List<Player> players)
@@ -56,7 +56,7 @@ namespace Domain
         {
             
             int totalPossiblePoints = team.DisputedMatches * 3;
-            return team.TeamPoints / totalPossiblePoints * 100;
+            return team.Points / totalPossiblePoints * 100;
         }
     }
 }
