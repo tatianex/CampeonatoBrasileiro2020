@@ -114,15 +114,6 @@ namespace Domain
             }
         }
 
-        /* public void CreateMatchResults(User user, int round, Team team1, Team team2)
-        {
-
-                team1.EfficiencyPercent = team1.GetEfficiency(round, team1, user);
-                team2.EfficiencyPercent = team2.GetEfficiency(round, team2, user);
-            }
-            
-        } */
-
         public bool LaunchRoundResults(int round, List<Game> gamesResults, User user)
         {
             if (user.Profile == User.UserProfile.CBF)
@@ -155,55 +146,59 @@ namespace Domain
                     // que é passado pelo parâmetro gamesResults
                     
                     var game = _games.IndexOf(gamesResults[actualGame]);
+                    Team team1 = _games[game].Team1;
+                    Team team2 = _games[game].Team2;
+
                     _games[game].Team1Goals = gamesResults[actualGame].Team1Goals;
                     _games[game].Team2Goals = gamesResults[actualGame].Team2Goals;
 
                     // Lança os resultados e calcula os pontos dos times do jogo atual
 
                     // Jogos disputados
-                    _games[game].Team1.DisputedMatches++;
-                    _games[game].Team2.DisputedMatches++;
+                    team1.DisputedMatches++;
+                    team2.DisputedMatches++;
 
                     // Total de gols do time
-                    _games[game].Team1.Goals += _games[game].Team1Goals;
-                    _games[game].Team2.Goals += _games[game].Team2Goals;
+                    team1.Goals += _games[game].Team1Goals;
+                    team2.Goals += _games[game].Team2Goals;
 
                     // Total de gols sofridos
-                    _games[game].Team1.ConcededGoals += _games[game].Team2Goals;
-                    _games[game].Team2.ConcededGoals += _games[game].Team1Goals;
+                    team1.ConcededGoals += _games[game].Team2Goals;
+                    team2.ConcededGoals += _games[game].Team1Goals;
                 
                     // Saldo de gols recebe os gols feitos menos os gols sofridos
-                    _games[game].Team1.GoalsOutcome += _games[game].Team1Goals - _games[game].Team2Goals;
-                    _games[game].Team2.GoalsOutcome += _games[game].Team2Goals - _games[game].Team1Goals;
+                    team1.GoalsOutcome += _games[game].Team1Goals - _games[game].Team2Goals;
+                    team2.GoalsOutcome += _games[game].Team2Goals - _games[game].Team1Goals;
                 
                     if (_games[game].Team1Goals == _games[game].Team2Goals)
                     {
                         // Quando há empate cada um dos times recebe um ponto
                         // e incrementa o histórico de empates
-                        _games[game].Team1.Points++;
-                        _games[game].Team2.Points++;
-                        _games[game].Team1.Draws++;
-                        _games[game].Team2.Draws++;
+                        team1.Points++;
+                        team2.Points++;
+                        team1.Draws++;
+                        team2.Draws++;
                     }
                     else if (_games[game].Team1Goals > _games[game].Team2Goals)
                     {
                         // Quando o time1 tem mais gols que 2º este recebe 3 pontos
                         // e incrementa suas vitórias e aumenta o histórico de derrotas do outro time
-                        _games[game].Team1.Points += 3;
-                        _games[game].Team1.Victories++;
-                        _games[game].Team2.Defeats++;
+                        team1.Points += 3;
+                        team1.Victories++;
+                        team2.Defeats++;
                     }
                     else
                     {
                         // Quando o time2 tem mais gols que o primeiro ele recebe 3 pontos
                         // e incrementa suas vitórias e aumenta o histórico de derrotas do outro time
-                        _games[game].Team2.Points += 3;
-                        _games[game].Team2.Victories++;
-                        _games[game].Team1.Defeats++;
+                        team2.Points += 3;
+                        team2.Victories++;
+                        team1.Defeats++;
                     }
-                
-                }
 
+                    team1.EfficiencyPercent = team1.GetEfficiency(round, team1, user);
+                    team2.EfficiencyPercent = team2.GetEfficiency(round, team2, user);
+                }
                 return true;
             }
             else return false;

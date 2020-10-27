@@ -52,7 +52,7 @@ namespace Domain
             return false;
         }
 
-        public double GetEfficiency(Team team, User user)
+        public double GetEfficiency(int round, Team team, User user)
         {
             
             int totalPossiblePoints = team.DisputedMatches * 3;
