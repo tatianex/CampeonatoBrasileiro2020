@@ -6,6 +6,7 @@ namespace Domain
     {
         public Guid Id { get; set; } = new Guid();
         public string Name { get; set; }
+        public int Goals { get; set;}
 
         public Player(string name, User user)
         {

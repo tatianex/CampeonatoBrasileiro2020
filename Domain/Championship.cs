@@ -114,7 +114,7 @@ namespace Domain
             }
         }
 
-        public bool LaunchRoundResults(int round, List<Game> gamesResults, User user)
+        public bool LaunchRoundResults(int round, List<Game> gamesResults, List<Player> scorers, User user)
         {
             if (user.Profile == User.UserProfile.CBF)
             {
@@ -198,41 +198,32 @@ namespace Domain
 
                     team1.EfficiencyPercent = team1.GetEfficiency(round, team1, user);
                     team2.EfficiencyPercent = team2.GetEfficiency(round, team2, user);
+
+        
+                /* int counter = 0;
+                var scorersOfficial = new List<Player>();
+                foreach (var item in scorers)
+                {
+                    scorersOfficial[counter] = _teams.Where(x => x.Players == item);
+                    counter++;
+                }
+
+                for (int i = 0; i < scorers.Count; i++)
+                {
+                    var scorersOfficial = new List<Player>();
+                    for (int j = 0; j < scorers.Count; j++)
+                    {
+                        scorersOfficial[j] = _teams.Where(x => x.Players == scorers[i]);
+                    }
+                }
+                */
+                    
                 }
                 return true;
             }
             else return false;
         }
 
-        //to do: Criar um método para informar os jogadores que marcaram gols, por jogo.
-
-        public void GetTopScorers(int round, Team team1, Team team2, User user, List<Player> scorers)
-        {
-            
-        }
-
-
-
-
-        // //  TESTE 2
-                // int counter = 0;
-                // var scorersOfficial = new List<Player>();
-                // foreach (var item in scorers)
-                // {
-                //     scorersOfficial[counter] = _teams.Where(x => x.Players == item);
-                //     counter++;
-                // }
-
-
-                // //  TESTE 1
-                // for (int i = 0; i < scorers.Count; i++)
-                // {
-                //     var scorersOfficial = new List<Player>();
-                //     for (int j = 0; j < scorers.Count; j++)
-                //     {
-                //         scorersOfficial[j] = _teams.Where(x => x.Players == scorers[i]);
-                //     }
-                // }
 
         public void Scorecard()
         {

@@ -73,7 +73,6 @@ namespace Test
                 new Team("Atlético-MG", players),
                 new Team("Flamengo", players),
                 new Team("Internacional", players)
-
             };
 
             return mockTeams.Take(amount).ToList();
@@ -97,22 +96,36 @@ namespace Test
             var user = new User("Tatiane", "password", User.UserProfile.CBF);
             var teams = GetMockTeams(8, user);
             var soccer = new Championship(teams, user);
-
             var results = new List<Game>();
-            results = soccer.Games.Where(x => x.Round == 1).ToList();
+            var scorers = new List<Player>();
 
             // Resultados dos jogos da rodada 1
+            results = soccer.Games.Where(x => x.Round == 1).ToList();
+            //scorers = results[0].Team1.Players;
+
+            // jogo 1
             results[0].Team1Goals = 3;
             results[0].Team2Goals = 2;
+            scorers[0].Name = "Zico";
+            scorers[0].Goals = 2;
+
+            // jogo 2
             results[1].Team1Goals = 1;
             results[1].Team2Goals = 0;
+
+            // jogo 3
             results[2].Team1Goals = 2;
             results[2].Team2Goals = 4;
+
+            // jogo 4
             results[3].Team1Goals = 0;
             results[3].Team2Goals = 0;
 
+            // Assert.True(election.Candidates.ElementAt(0).Name == candidates.ElementAt(0).Name);
+            var players1 = results[0].Team1.Players.ElementAt(0);
+            
             // Lança os resultados da rodada 1
-            soccer.LaunchRoundResults(1, results, user);
+            soccer.LaunchRoundResults(1, results, scorers, user);
 
             // Assert.NotEmpty(soccer.Teams);
         }       
