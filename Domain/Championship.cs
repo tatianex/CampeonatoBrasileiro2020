@@ -114,7 +114,7 @@ namespace Domain
             }
         }
 
-        public bool LaunchRoundResults(int round, List<Game> gamesResults, User user)
+        public bool LaunchRoundResults(int round, List<Game> gamesResults, User user, List<Player> scorers)
         {
             if (user.Profile == User.UserProfile.CBF)
             {
@@ -134,6 +134,28 @@ namespace Domain
                         throw new Exception("Jogos da rodada não coincidem!");
                     }
                 }
+
+                // //  TESTE 2
+                // int counter = 0;
+                // var scorersOfficial = new List<Player>();
+                // foreach (var item in scorers)
+                // {
+                //     scorersOfficial[counter] = _teams.Where(x => x.Players == item);
+                //     counter++;
+                // }
+
+
+                // //  TESTE 1
+                // for (int i = 0; i < scorers.Count; i++)
+                // {
+                //     var scorersOfficial = new List<Player>();
+                //     for (int j = 0; j < scorers.Count; j++)
+                //     {
+                //         scorersOfficial[j] = _teams.Where(x => x.Players == scorers[i]);
+                //     }
+                // }
+
+
 
                 // Loop para inserir os resultados dos jogos da rodada
                 // E o cálculo da tabela de pontos do campeonato por time
