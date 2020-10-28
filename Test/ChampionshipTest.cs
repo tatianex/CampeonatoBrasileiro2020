@@ -111,10 +111,8 @@ namespace Test
             results[3].Team1Goals = 0;
             results[3].Team2Goals = 0;
 
-            var Scorers = new List<Player>{new Player("Gabriel", user), new Player("Caio", user)};
-
             // Lança os resultados da rodada 1
-            soccer.LaunchRoundResults(1, results, user, Scorers);
+            soccer.LaunchRoundResults(1, results, user);
 
             // Assert.NotEmpty(soccer.Teams);
         }       
