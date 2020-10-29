@@ -64,7 +64,7 @@ namespace Domain
             foreach (var scorer in scorers)
             {
                 Player p = team._players.Find(x => x.Name == scorer.Name);
-                p.Goals += scorer.Goals;
+                if (p != null) p.Goals += scorer.Goals;
             }
         }
     

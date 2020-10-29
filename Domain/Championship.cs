@@ -97,7 +97,7 @@ namespace Domain
                 }
                 
                 // Criando um arquivo .txt com os confrontos de todas as rodadas
-                using (StreamWriter file = new StreamWriter(@"D:\DOCS\Dev\PROWAY\C#\jogos.txt"))
+                using (StreamWriter file = new StreamWriter(@"P:\Tatiane\CampeonatoBrasileiro2020\jogos.txt"))
                 {
                     var actualRound = _games[0].Round;
 
