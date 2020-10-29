@@ -7,12 +7,23 @@ namespace Domain
         public Guid Id { get; set; } = new Guid();
         public string Name { get; set; }
         public int Goals { get; set;}
+        public Team Team { get; set; }
 
         public Player(string name, User user)
         {
             if (user.Profile == User.UserProfile.CBF)
             {
                 Name = name;
+            }          
+        }
+
+        public Player(string name, Team team, int goals, User user)
+        {
+            if (user.Profile == User.UserProfile.CBF)
+            {
+                Name = name;
+                Team = team;
+                Goals = goals;
             }          
         }
     }

@@ -92,42 +92,64 @@ namespace Test
          [Fact]
         public void should_return_true_when_launched_results_are_correct()
         {
-            // Cria times e campeonato
+            // Cria o usuário CBF
             var user = new User("Tatiane", "password", User.UserProfile.CBF);
-            var teams = GetMockTeams(8, user);
-            var soccer = new Championship(teams, user);
-            var results = new List<Game>();
+
+            // Cria os times que participarão do campeonato
+            List<Team> teams = GetMockTeams(8, user);
+
+            // Cria a lista de goleadores
             var scorers = new List<Player>();
 
-            // Resultados dos jogos da rodada 1
-            results = soccer.Games.Where(x => x.Round == 1).ToList();
-            //scorers = results[0].Team1.Players;
+            // Cria as rodadas do campeonato
+            var soccer = new Championship(teams, user);
+            soccer.CreateRounds(user);
 
-            // jogo 1
-            results[0].Team1Goals = 3;
-            results[0].Team2Goals = 2;
-            scorers[0].Name = "Zico";
-            scorers[0].Goals = 2;
+            // Resultados dos jogos da rodada 
+            var results = new List<Game>();
+            results = soccer.Games.Where(x => x.Round == 1).ToList();
+
+            // Jogo 1 da rodada
+            Game jogo1 = results[0];  // Referência ao jogo 0 de results
+            
+            jogo1.Team1Goals = 3;
+            scorers.Add(new Player("Fernando", jogo1.Team1, 2, user));
+            scorers.Add(new Player("Daniel", jogo1.Team1, 1, user));
+
+            jogo1.Team2Goals = 2;
+            scorers.Add(new Player("Diego", jogo1.Team2, 1, user));
+            scorers.Add(new Player("Marcos", jogo1.Team2, 1, user));
 
             // jogo 2
-            results[1].Team1Goals = 1;
-            results[1].Team2Goals = 0;
+            Game jogo2 = results[1]; // Referência ao jogo 1 de results
+
+            jogo2.Team1Goals = 1;
+            scorers.Add(new Player("Gabriel", jogo2.Team1, 1, user));
+
+            jogo2.Team2Goals = 0;
 
             // jogo 3
-            results[2].Team1Goals = 2;
-            results[2].Team2Goals = 4;
+            Game jogo3 = results[2]; // Referência ao jogo 2 de results
+
+            jogo3.Team1Goals = 2;
+            scorers.Add(new Player("Rodolfo", jogo3.Team1, 1, user));
+            scorers.Add(new Player("Yuri", jogo3.Team1, 1, user));
+
+            jogo3.Team2Goals = 4;
+            scorers.Add(new Player("Ramon", jogo3.Team2, 2, user));
+            scorers.Add(new Player("Thiago", jogo3.Team2, 1, user));
+            scorers.Add(new Player("Gustavo", jogo3.Team2, 1, user));
 
             // jogo 4
-            results[3].Team1Goals = 0;
-            results[3].Team2Goals = 0;
+            Game jogo4 = results[3]; // Referência ao jogo 3 de results
 
-            // Assert.True(election.Candidates.ElementAt(0).Name == candidates.ElementAt(0).Name);
-            var players1 = results[0].Team1.Players.ElementAt(0);
-            
-            // Lança os resultados da rodada 1
-            soccer.LaunchRoundResults(1, results, scorers, user);
+            jogo4.Team1Goals = 0;
+            jogo4.Team2Goals = 0;
+          
+            // Lança os resultados da rodada             
+            var result = soccer.LaunchRoundResults(1, results, scorers, user);
 
-            // Assert.NotEmpty(soccer.Teams);
+            Assert.True(result);
         }       
     }
 }

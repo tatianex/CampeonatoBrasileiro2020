@@ -146,8 +146,8 @@ namespace Domain
                     // que é passado pelo parâmetro gamesResults
                     
                     var game = _games.IndexOf(gamesResults[actualGame]);
-                    Team team1 = _games[game].Team1;
-                    Team team2 = _games[game].Team2;
+                    Team team1 = _games[game].Team1;  // é uma referência ao time 1 em _games
+                    Team team2 = _games[game].Team2;  // é uma referência ao time 2 em _games
 
                     _games[game].Team1Goals = gamesResults[actualGame].Team1Goals;
                     _games[game].Team2Goals = gamesResults[actualGame].Team2Goals;
@@ -196,27 +196,12 @@ namespace Domain
                         team1.Defeats++;
                     }
 
+                    // Calcula percentual de eficiência de cada time
                     team1.EfficiencyPercent = team1.GetEfficiency(round, team1, user);
                     team2.EfficiencyPercent = team2.GetEfficiency(round, team2, user);
 
-        
-                /* int counter = 0;
-                var scorersOfficial = new List<Player>();
-                foreach (var item in scorers)
-                {
-                    scorersOfficial[counter] = _teams.Where(x => x.Players == item);
-                    counter++;
-                }
-
-                for (int i = 0; i < scorers.Count; i++)
-                {
-                    var scorersOfficial = new List<Player>();
-                    for (int j = 0; j < scorers.Count; j++)
-                    {
-                        scorersOfficial[j] = _teams.Where(x => x.Players == scorers[i]);
-                    }
-                }
-                */
+                    List<Player> scorersTeam1 = scorers.FindAll(x => x.Team == team1);
+                    List<Player> scorersTeam2 = scorers.FindAll(x => x.Team == team2);
                     
                 }
                 return true;
