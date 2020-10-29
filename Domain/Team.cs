@@ -58,5 +58,15 @@ namespace Domain
             int totalPossiblePoints = team.DisputedMatches * 3;
             return team.Points / totalPossiblePoints * 100;
         }
+    
+        public static void LaunchScorerGoals(Team team, List<Player> scorers, User user)
+        {
+            foreach (var scorer in scorers)
+            {
+                Player p = team._players.Find(x => x.Name == scorer.Name);
+                p.Goals += scorer.Goals;
+            }
+        }
+    
     }
 }
