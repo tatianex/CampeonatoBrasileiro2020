@@ -13,10 +13,10 @@ namespace WebAPI.Controllers
     public class UserController : ControllerBase
     {        
         [HttPost]
-        public Guid Post(CreateUserRequest request)
+        public Profile Post(CreateUserRequest request)
         {
-            var user = new User(request.Name, "password", User.UserProfile.CBF);
-            return user.Id;
+            var user = new User(request.Name, request.Password, request.Profile);
+            return user.Profile;
         }
     }
 }
