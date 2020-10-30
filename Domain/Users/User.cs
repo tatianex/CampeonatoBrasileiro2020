@@ -7,8 +7,8 @@ namespace Domain
         public Guid Id { get; set; } = new Guid();
         public enum UserProfile
         {
-            CBF,  // admin
-            Fan   // torcedor/usuário
+            CBF = 0,  // admin
+            Fan = 1   // torcedor/usuário
         }
         public string Name { get; set; }
         public string Password { get; private set; }

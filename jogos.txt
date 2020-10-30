@@ -1,34 +1,34 @@
-Rodada: 1: Jogo: Athletico-PR x Botafogo
-Rodada: 1: Jogo: Ceará-SC x Goiás
-Rodada: 1: Jogo: Bahia x Bragantino
-Rodada: 1: Jogo: Vasco x Coritiba
+Rodada: 1: Jogo: Bahia x Vasco
+Rodada: 1: Jogo: Bragantino x Botafogo
+Rodada: 1: Jogo: Coritiba x Goiás
+Rodada: 1: Jogo: Ceará-SC x Athletico-PR
 
-Rodada: 2: Jogo: Athletico-PR x Goiás
-Rodada: 2: Jogo: Botafogo x Bragantino
-Rodada: 2: Jogo: Ceará-SC x Coritiba
-Rodada: 2: Jogo: Bahia x Vasco
+Rodada: 2: Jogo: Bahia x Botafogo
+Rodada: 2: Jogo: Vasco x Goiás
+Rodada: 2: Jogo: Bragantino x Athletico-PR
+Rodada: 2: Jogo: Coritiba x Ceará-SC
 
-Rodada: 3: Jogo: Athletico-PR x Bragantino
-Rodada: 3: Jogo: Goiás x Coritiba
-Rodada: 3: Jogo: Botafogo x Vasco
-Rodada: 3: Jogo: Ceará-SC x Bahia
+Rodada: 3: Jogo: Bahia x Goiás
+Rodada: 3: Jogo: Botafogo x Athletico-PR
+Rodada: 3: Jogo: Vasco x Ceará-SC
+Rodada: 3: Jogo: Bragantino x Coritiba
 
-Rodada: 4: Jogo: Athletico-PR x Coritiba
-Rodada: 4: Jogo: Bragantino x Vasco
-Rodada: 4: Jogo: Goiás x Bahia
-Rodada: 4: Jogo: Botafogo x Ceará-SC
+Rodada: 4: Jogo: Bahia x Athletico-PR
+Rodada: 4: Jogo: Goiás x Ceará-SC
+Rodada: 4: Jogo: Botafogo x Coritiba
+Rodada: 4: Jogo: Vasco x Bragantino
 
-Rodada: 5: Jogo: Athletico-PR x Vasco
-Rodada: 5: Jogo: Coritiba x Bahia
-Rodada: 5: Jogo: Bragantino x Ceará-SC
-Rodada: 5: Jogo: Goiás x Botafogo
+Rodada: 5: Jogo: Bahia x Ceará-SC
+Rodada: 5: Jogo: Athletico-PR x Coritiba
+Rodada: 5: Jogo: Goiás x Bragantino
+Rodada: 5: Jogo: Botafogo x Vasco
 
-Rodada: 6: Jogo: Athletico-PR x Bahia
-Rodada: 6: Jogo: Vasco x Ceará-SC
-Rodada: 6: Jogo: Coritiba x Botafogo
-Rodada: 6: Jogo: Bragantino x Goiás
+Rodada: 6: Jogo: Bahia x Coritiba
+Rodada: 6: Jogo: Ceará-SC x Bragantino
+Rodada: 6: Jogo: Athletico-PR x Vasco
+Rodada: 6: Jogo: Goiás x Botafogo
 
-Rodada: 7: Jogo: Athletico-PR x Ceará-SC
-Rodada: 7: Jogo: Bahia x Botafogo
-Rodada: 7: Jogo: Vasco x Goiás
-Rodada: 7: Jogo: Coritiba x Bragantino
+Rodada: 7: Jogo: Bahia x Bragantino
+Rodada: 7: Jogo: Coritiba x Vasco
+Rodada: 7: Jogo: Ceará-SC x Botafogo
+Rodada: 7: Jogo: Athletico-PR x Goiás
