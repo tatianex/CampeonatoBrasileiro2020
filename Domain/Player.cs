@@ -1,4 +1,5 @@
 using System;
+using Domain.Users;
 
 namespace Domain
 {
@@ -11,7 +12,7 @@ namespace Domain
 
         public Player(string name, User user)
         {
-            if (user.Profile == User.UserProfile.CBF)
+            if (user.Profile == UserProfile.CBF)
             {
                 Name = name;
             }          
@@ -19,7 +20,7 @@ namespace Domain
 
         public Player(string name, Team team, int goals, User user)
         {
-            if (user.Profile == User.UserProfile.CBF)
+            if (user.Profile == UserProfile.CBF)
             {
                 Name = name;
                 Team = team;

@@ -1,15 +1,10 @@
 using System;
 
-namespace Domain
+namespace Domain.Users
 {
     public class User
     {
-        public Guid Id { get; set; } = new Guid();
-        public enum UserProfile
-        {
-            CBF = 0,  // admin
-            Fan = 1   // torcedor/usuário
-        }
+        public Guid Id { get; set; } = new Guid();    
         public string Name { get; set; }
         public string Password { get; private set; }
         public UserProfile Profile { get; set; }

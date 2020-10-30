@@ -1,5 +1,5 @@
 using Xunit;
-using Domain;
+using Domain.Users;
 
 namespace Test
 {
@@ -10,7 +10,7 @@ namespace Test
         {
             var name = "Rogério Caboclo";
             var password = "459iMs@;3eZ!8*";
-            var profile = User.UserProfile.CBF;
+            var profile = UserProfile.CBF;
             
             var user = new User(name, password, profile);
 

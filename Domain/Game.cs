@@ -1,4 +1,5 @@
 using System;
+using Domain.Users;
 
 namespace Domain
 {
@@ -13,7 +14,7 @@ namespace Domain
 
         public Game(int round, Team team1, Team team2, User user)
         {
-            if ((user.Profile == User.UserProfile.CBF) && (team1.Id != team2.Id))
+            if ((user.Profile == UserProfile.CBF) && (team1.Id != team2.Id))
             {
                 Round = round;
                 Team1 = team1;

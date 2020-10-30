@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain.Users;
 
 namespace Domain
 {
@@ -31,7 +32,7 @@ namespace Domain
         {
             var playerAlreadyExists = _players.FirstOrDefault(x => x.Name == player.Name);
 
-            if ((user.Profile == User.UserProfile.CBF)
+            if ((user.Profile == UserProfile.CBF)
                 && (_players.Count < 32)
                 && (playerAlreadyExists == null))
             {
@@ -43,7 +44,7 @@ namespace Domain
         
         public bool RemovePlayer(string name, User user)
         {
-            if (user.Profile == User.UserProfile.CBF)
+            if (user.Profile == UserProfile.CBF)
             {    
                 var RemovedPlayer = _players.First(x => x.Name == name);
                 _players.Remove(RemovedPlayer);

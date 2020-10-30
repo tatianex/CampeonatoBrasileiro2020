@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using Domain.Users;
 
 namespace Domain
 {
@@ -14,7 +15,7 @@ namespace Domain
         
         public Championship(List<Team> teams, User user)
         {
-            if ((user.Profile == User.UserProfile.CBF) && (teams.Count > 7))
+            if ((user.Profile == UserProfile.CBF) && (teams.Count > 7))
             {
                 var validTeam = false;
                 
@@ -50,7 +51,7 @@ namespace Domain
         
         public void CreateRounds(User user)
         {            
-            if ((user.Profile == User.UserProfile.CBF) && (Teams.Count > 7))
+            if ((user.Profile == UserProfile.CBF) && (Teams.Count > 7))
             {
                 // Embaralha a lista de times
                 Tools.Shuffle(_teams);
@@ -116,7 +117,7 @@ namespace Domain
 
         public bool LaunchRoundResults(int round, List<Game> gamesResults, List<Player> scorers, User user)
         {
-            if (user.Profile == User.UserProfile.CBF)
+            if (user.Profile == UserProfile.CBF)
             {
                 /*
                     Verificar se os times que estamos inserindo
