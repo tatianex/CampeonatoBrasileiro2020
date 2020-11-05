@@ -9,10 +9,15 @@ namespace WebAPI.Controllers.Users
     public class UsersController : ControllerBase
     {        
         [HttpPost]
-        public Guid Post(CreateUserRequest request)
+        //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
+        public IActionResult Post(CreateUserRequest request)
         {
+            if(request.Profile == UserProfile.CBF && request.Password != "admin123")
+            {
+                return Unauthorized();
+            }
             var user = new User(request.Name, request.Password, request.Profile);
-            return user.Id;
+            return Ok(user.Id);
         }
     }
 }
