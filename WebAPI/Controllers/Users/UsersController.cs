@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Domain.Users;
+using System;
 
 namespace WebAPI.Controllers.Users
 {
@@ -8,10 +9,10 @@ namespace WebAPI.Controllers.Users
     public class UsersController : ControllerBase
     {        
         [HttpPost]
-        public UserProfile Post(CreateUserRequest request)
+        public Guid Post(CreateUserRequest request)
         {
             var user = new User(request.Name, request.Password, request.Profile);
-            return user.Profile;
+            return user.Id;
         }
     }
 }
