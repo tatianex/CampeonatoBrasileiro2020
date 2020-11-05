@@ -12,14 +12,14 @@ namespace Test
         {
             var teams = new List<Team>();
             
-                /* Guid new Guid(), "Palmeiras",
-                Guid new Guid(), "Vasco",
-                Guid new Guid(), "Fluminense",
-                Guid new Guid(), "Flamengo",
-                Guid new Guid(), "São Paulo",
-                Guid new Guid(), "Corínthias",
-                Guid new Guid(), "Botafogo",
-                Guid new Guid(), "Grêmio" */
+                /* Guid Guid.NewGuid(), "Palmeiras",
+                Guid Guid.NewGuid(), "Vasco",
+                Guid Guid.NewGuid(), "Fluminense",
+                Guid Guid.NewGuid(), "Flamengo",
+                Guid Guid.NewGuid(), "São Paulo",
+                Guid Guid.NewGuid(), "Corínthias",
+                Guid Guid.NewGuid(), "Botafogo",
+                Guid Guid.NewGuid(), "Grêmio" */
             
         }
     }

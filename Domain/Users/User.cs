@@ -4,7 +4,7 @@ namespace Domain.Users
 {
     public class User
     {
-        public Guid Id { get; set; } = new Guid();    
+        public Guid Id { get; set; } = Guid.NewGuid();    
         public string Name { get; set; }
         public string Password { get; private set; }
         public UserProfile Profile { get; set; }

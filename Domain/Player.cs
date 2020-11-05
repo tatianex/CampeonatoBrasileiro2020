@@ -5,7 +5,7 @@ namespace Domain
 {
     public class Player
     {
-        public Guid Id { get; set; } = new Guid();
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
         public int Goals { get; set;}
         public Team Team { get; set; }
