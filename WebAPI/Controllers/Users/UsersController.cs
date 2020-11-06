@@ -7,7 +7,13 @@ namespace WebAPI.Controllers.Users
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ControllerBase
-    {        
+    {
+        public readonly UsersService _usersService;
+        public UsersController()
+        {
+            _usersService = new UsersService()            ;
+        }
+
         [HttpPost]
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
         public IActionResult Post(CreateUserRequest request)
@@ -16,8 +22,8 @@ namespace WebAPI.Controllers.Users
             {
                 return Unauthorized();
             }
-            var user = new User(request.Name, request.Profile);
-            return Ok(user.Id);
+            var userId = _usersService.Create(request.Name, request.Profile);
+            return Ok(userId);
         }
     }
 }
