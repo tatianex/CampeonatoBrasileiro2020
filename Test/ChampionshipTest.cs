@@ -82,7 +82,7 @@ namespace Test
         [Fact]
         public void should_return_true_when_size_of_teams_and_players_are_correct()
         {
-            var user = new User("Tatiane", "password", UserProfile.CBF);
+            var user = new User("Tatiane", UserProfile.CBF);
             var teams = GetMockTeams(8, user);
 
             var soccer = new Championship(teams, user);
@@ -94,7 +94,7 @@ namespace Test
         public void should_return_true_when_launched_results_are_correct()
         {
             // Cria o usuário CBF
-            var user = new User("Tatiane", "password", UserProfile.CBF);
+            var user = new User("Tatiane", UserProfile.CBF);
 
             // Cria os times que participarão do campeonato
             List<Team> teams = GetMockTeams(8, user);

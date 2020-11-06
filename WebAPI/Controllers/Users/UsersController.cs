@@ -16,7 +16,7 @@ namespace WebAPI.Controllers.Users
             {
                 return Unauthorized();
             }
-            var user = new User(request.Name, request.Password, request.Profile);
+            var user = new User(request.Name, request.Profile);
             return Ok(user.Id);
         }
     }

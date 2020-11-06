@@ -9,13 +9,11 @@ namespace Test
         public void should_contain_same_parameters_provided()
         {
             var name = "Rogério Caboclo";
-            var password = "459iMs@;3eZ!8*";
             var profile = UserProfile.CBF;
             
-            var user = new User(name, password, profile);
+            var user = new User(name, profile);
 
             Assert.Equal(name, user.Name);
-            Assert.Equal(password, user.Password);
             Assert.Equal(profile, user.Profile);
         }
     }    
