@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain.Users;
 
-namespace Domain
+namespace Domain.Teams
 {
     public class Team
     {  

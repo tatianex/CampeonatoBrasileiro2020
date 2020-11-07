@@ -22,7 +22,10 @@ namespace WebAPI.Controllers.Users
             {
                 return Unauthorized();
             }
-            var userId = _usersService.Create(request.Name, request.Profile);
+
+            // return BadRequest("O nome está inválido");
+
+            var userId = _usersService.CreateUser(request.Name, request.Profile);
             return Ok(userId);
         }
     }

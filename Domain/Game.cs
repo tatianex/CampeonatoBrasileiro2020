@@ -1,5 +1,6 @@
 using System;
 using Domain.Users;
+using Domain.Teams;
 
 namespace Domain
 {

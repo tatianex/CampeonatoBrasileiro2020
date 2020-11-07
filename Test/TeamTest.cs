@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 using Domain;
+using Domain.Teams;
 
 namespace Test
 {

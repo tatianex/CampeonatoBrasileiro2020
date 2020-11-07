@@ -1,5 +1,6 @@
 using System;
 using Domain.Users;
+using Domain.Teams;
 
 namespace Domain
 {
@@ -10,14 +11,13 @@ namespace Domain
         public int Goals { get; set;}
         public Team Team { get; set; }
 
-        public Player(string name, User user)
+        // To do: Colocar a validação de user no PlayersController do WebAPI.
+        public Player(string name)
         {
-            if (user.Profile == UserProfile.CBF)
-            {
-                Name = name;
-            }          
+            Name = name;
         }
 
+        // To do: Colocar a validação de user no PlayersController do WebAPI.
         public Player(string name, Team team, int goals, User user)
         {
             if (user.Profile == UserProfile.CBF)

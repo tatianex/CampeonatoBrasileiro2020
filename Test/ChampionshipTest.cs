@@ -3,6 +3,7 @@ using Domain;
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Users;
+using Domain.Teams;
 
 namespace Test
 {
@@ -12,36 +13,36 @@ namespace Test
         {
             var mockPlayers = new List<Player>
             {
-                new Player("Gabriel", user),
-                new Player("Marcos", user),
-                new Player("Rodolfo", user),
-                new Player("Rafael", user),
-                new Player("Diego", user),
-                new Player("Yuri", user),
-                new Player("Luan", user),
-                new Player("Daniel", user),
-                new Player("Miguel", user),
-                new Player("Matheus", user),
-                new Player("Lucas", user),
-                new Player("Caio", user),
-                new Player("William", user),
-                new Player("Fernando", user),
-                new Player("Felipe", user),
-                new Player("Wellington", user),
-                new Player("Luiz Henrique", user),
-                new Player("Vinícius", user),
-                new Player("Thiago", user),
-                new Player("Pedro", user),
-                new Player("Raul", user),
-                new Player("Ruan", user),
-                new Player("Ramon", user),
-                new Player("Bruno", user),
-                new Player("Fabio", user),
-                new Player("Marcelo", user),
-                new Player("Leandro", user),
-                new Player("João", user),
-                new Player("Antônio", user),
-                new Player("Gustavo", user),
+                new Player("Gabriel"),
+                new Player("Marcos"),
+                new Player("Rodolfo"),
+                new Player("Rafael"),
+                new Player("Diego"),
+                new Player("Yuri"),
+                new Player("Luan"),
+                new Player("Daniel"),
+                new Player("Miguel"),
+                new Player("Matheus"),
+                new Player("Lucas"),
+                new Player("Caio"),
+                new Player("William"),
+                new Player("Fernando"),
+                new Player("Felipe"),
+                new Player("Wellington"),
+                new Player("Luiz Henrique"),
+                new Player("Vinícius"),
+                new Player("Thiago"),
+                new Player("Pedro"),
+                new Player("Raul"),
+                new Player("Ruan"),
+                new Player("Ramon"),
+                new Player("Bruno"),
+                new Player("Fabio"),
+                new Player("Marcelo"),
+                new Player("Leandro"),
+                new Player("João"),
+                new Player("Antônio"),
+                new Player("Gustavo"),
             };
 
             return mockPlayers.Take(amount).ToList();
