@@ -30,10 +30,10 @@ namespace WebAPI.Controllers.Users
             return Ok(userId);
         }
 
-        [HttpGet]
+        /* [HttpGet]
         public IReadOnlyCollection<Users> Get()
         {
             return Users;
-        }
+        } */
     }
 }
