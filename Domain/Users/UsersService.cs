@@ -13,8 +13,6 @@ namespace Domain.Users
                 UsersRepository.Add(user);
             }
             return user.Id;
-        }
-
-
+        }      
     }
 }

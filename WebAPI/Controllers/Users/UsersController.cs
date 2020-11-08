@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Domain.Users;
+using System.Collections.Generic;
 using System;
 
 namespace WebAPI.Controllers.Users
@@ -11,7 +12,7 @@ namespace WebAPI.Controllers.Users
         public readonly UsersService _usersService;
         public UsersController()
         {
-            _usersService = new UsersService()            ;
+            _usersService = new UsersService();
         }
 
         [HttpPost]
@@ -27,6 +28,12 @@ namespace WebAPI.Controllers.Users
 
             var userId = _usersService.CreateUser(request.Name, request.Profile);
             return Ok(userId);
+        }
+
+        [HttpGet]
+        public IReadOnlyCollection<Users> Get()
+        {
+            return Users;
         }
     }
 }

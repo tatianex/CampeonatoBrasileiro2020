@@ -1,4 +1,4 @@
-using System;
+/* using System;
 using Domain.Users;
 
 namespace Domain.Players
@@ -12,4 +12,4 @@ namespace Domain.Players
             return player.Id;
         }
     }
-}
+} */
