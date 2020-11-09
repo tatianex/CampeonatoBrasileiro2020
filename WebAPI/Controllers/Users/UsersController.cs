@@ -24,12 +24,18 @@ namespace WebAPI.Controllers.Users
                 return Unauthorized();
             }
 
-            // return BadRequest("O nome está inválido");
+            var response = _usersService.Create(request.Name, request.Profile);
 
-            var userId = _usersService.CreateUser(request.Name, request.Profile);
-            return Ok(userId);
+            if (!response.IsValid)
+            {
+                return BadRequest(response.Errors);
+            }
+           
+            return Ok(response.Id);
         }
 
+
+        //Não é necessário para user
         /* [HttpGet]
         public IReadOnlyCollection<Users> Get()
         {
