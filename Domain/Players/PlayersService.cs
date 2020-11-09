@@ -1,15 +1,21 @@
-/* using System;
 using Domain.Users;
+using Domain.Players;
 
 namespace Domain.Players
 {
     public class PlayersService
     {
-        public Guid CreatePlayer(string name, UserProfile profile)
+        public CreatedPlayerDTO CreatePlayer(string name)
         {
             var player = new Player(name);
-            PlayersRepository.Add(player);  // criar PlayerRepository
-            return player.Id;
+            var playerValidation = player.Validate();
+
+            if (playerValidation.isValid)
+            {
+                PlayersRepository.Add(player);
+                return new CreatedPlayerDTO(player.Id);
+            }
+            return new CreatedPlayerDTO(playerValidation.errors);
         }
     }
-} */
+}
