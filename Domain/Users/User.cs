@@ -16,7 +16,7 @@ namespace Domain.Users
             Profile = profile;
         }
 
-        private bool ValidateauUserName()
+        private bool ValidateUserName()
         {
             if (string.IsNullOrEmpty(Name))
             {
@@ -47,7 +47,7 @@ namespace Domain.Users
         public (IList<string> errors, bool isValid) Validate()
         {
             var errors = new List<string>();
-            if (!ValidateauUserName())
+            if (!ValidateUserName())
             {
                 errors.Add("Nome inválido.");
             }
