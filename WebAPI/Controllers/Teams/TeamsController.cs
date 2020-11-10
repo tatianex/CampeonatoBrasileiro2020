@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Domain.Users;
 using Domain.Teams;
-using System.Collections.Generic;
+using Microsoft.Extensions.Primitives;
+using System;
 
 namespace WebAPI.Controllers.Players
 {
@@ -10,18 +11,33 @@ namespace WebAPI.Controllers.Players
     public class TeamsController : ControllerBase
     {
         public readonly TeamsService _teamService;
+        public readonly UsersService _usersService;
         public TeamsController()
         {
             _teamService = new TeamsService();
+            _usersService = new UsersService();
         }
 
         [HttpPost]
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
         public IActionResult Post(CreateTeamRequest request)
         {
-            if(request.Profile != UserProfile.CBF || request.Password != "admin123")
+            StringValues userId;
+            if(!Request.Headers.TryGetValue("UserId", out userId))
             {
                 return Unauthorized();
+            }
+
+            var user = _usersService.GetById(Guid.Parse(userId));
+            
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            if (user.Profile == UserProfile.Fan)
+            {
+                return Forbid();
             }
             
             var response = _teamService.CreateTeam(request.Name);

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Domain.Users;
 using Domain.Players;
-using System.Collections.Generic;
 using Microsoft.Extensions.Primitives;
 using System;
 
