@@ -1,6 +1,3 @@
-using Domain.Users;
-using Domain.Players;
-
 namespace Domain.Players
 {
     public class PlayersService

@@ -21,6 +21,11 @@ namespace Domain.Teams
         public int ConcededGoals { get; set; }
         public double EfficiencyPercent { get; set; }
 
+        public Team(string name)
+        {
+            Name = name;
+        }
+
         public Team(string name, List<Player> players)
         {
             Name = name;
@@ -67,6 +72,39 @@ namespace Domain.Teams
                 Player p = team._players.Find(x => x.Name == scorer.Name);
                 if (p != null) p.Goals += scorer.Goals;
             }
+        }
+
+        private bool ValidateTeamName()
+        {
+            if (string.IsNullOrEmpty(Name))
+            {
+                return false;
+            }
+
+            var words = Name.Split(' ');
+            foreach (var word in words)
+            {
+                if (word.Trim().Length < 2)
+                {
+                    return false;
+                }
+                if (word.Any(x => !char.IsLetter(x)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Colocar o VALIDATE no playersService dentro de Create e o BadRequest no webapi
+        public (IList<string> errors, bool isValid) Validate()
+        {
+            var errors = new List<string>();
+            if (!ValidateTeamName())
+            {
+                errors.Add("Nome inválido.");
+            }
+            return (errors, errors.Count == 0);
         }
     
     }

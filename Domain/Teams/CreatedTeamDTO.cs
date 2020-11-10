@@ -1,21 +1,21 @@
 using System;
 using System.Collections.Generic;
 
-namespace Domain.Players
+namespace Domain.Teams
 {
-    public class CreatedPlayerDTO
+    public class CreatedTeamDTO
     {
         public Guid Id{ get; private set; }
         public IList<string> Errors{ get; set; }
         public bool IsValid { get; set; }
 
-        public CreatedPlayerDTO(Guid id)
+        public CreatedTeamDTO(Guid id)
         {
             Id = id;
             IsValid = true;
         }
 
-        public CreatedPlayerDTO(IList<string> errors)
+        public CreatedTeamDTO(IList<string> errors)
         {
             Errors = errors;
             IsValid = false;

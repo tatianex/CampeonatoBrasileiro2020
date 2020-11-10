@@ -19,7 +19,7 @@ namespace WebAPI.Controllers.Players
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
         public IActionResult Post(CreatePlayerRequest request)
         {
-            if(request.Profile == UserProfile.CBF && request.Password != "admin123")
+            if(request.Profile != UserProfile.CBF || request.Password != "admin123")
             {
                 return Unauthorized();
             }
