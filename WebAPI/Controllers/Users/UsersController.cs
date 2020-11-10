@@ -19,7 +19,8 @@ namespace WebAPI.Controllers.Users
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
         public IActionResult Post(CreateUserRequest request)
         {
-            if(request.Profile != UserProfile.CBF || request.Password != "admin123")
+            // Usuários CBF não podem ser criados por qualquer um.
+            if(request.Profile == UserProfile.CBF && request.Password != "admin123")
             {
                 return Unauthorized();
             }

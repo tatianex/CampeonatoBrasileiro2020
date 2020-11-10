@@ -4,14 +4,14 @@ using Domain.Teams;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Domain
+namespace Domain.Players
 {
     public class Player
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
-        public string Name { get; set; }
+        public Guid Id { get; private set; } = Guid.NewGuid();
+        public string Name { get; private set; }
         public int Goals { get; set;}
-        public Team Team { get; set; }
+        public Team Team { get; private set; }  // O professor não colocou, verificar...
 
         public Player(string name)
         {

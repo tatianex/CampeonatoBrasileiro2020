@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Users;
+using Domain.Players;
 
 namespace Domain.Teams
 {
@@ -36,10 +37,13 @@ namespace Domain.Teams
         public bool AddPlayer(Player player, User user)
         {
             var playerAlreadyExists = _players.FirstOrDefault(x => x.Name == player.Name);
+            var playerValidation = player.Validate();
+
 
             if ((user.Profile == UserProfile.CBF)
                 && (_players.Count < 32)
-                && (playerAlreadyExists == null))
+                && (playerAlreadyExists == null)
+                && (playerValidation.isValid))
             {
                 _players.Add(player);
                 return true;                
@@ -96,7 +100,6 @@ namespace Domain.Teams
             return true;
         }
 
-        // Colocar o VALIDATE no playersService dentro de Create e o BadRequest no webapi
         public (IList<string> errors, bool isValid) Validate()
         {
             var errors = new List<string>();

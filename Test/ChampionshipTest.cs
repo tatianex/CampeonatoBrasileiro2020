@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain.Users;
 using Domain.Teams;
+using Domain.Players;
 
 namespace Test
 {
@@ -13,36 +14,36 @@ namespace Test
         {
             var mockPlayers = new List<Player>
             {
-                new Player("Gabriel"),
-                new Player("Marcos"),
-                new Player("Rodolfo"),
-                new Player("Rafael"),
-                new Player("Diego"),
-                new Player("Yuri"),
-                new Player("Luan"),
-                new Player("Daniel"),
-                new Player("Miguel"),
-                new Player("Matheus"),
-                new Player("Lucas"),
-                new Player("Caio"),
-                new Player("William"),
-                new Player("Fernando"),
-                new Player("Felipe"),
-                new Player("Wellington"),
+                new Player("Gabriel Silva"),
+                new Player("Marcos Fernandes"),
+                new Player("Rodolfo Marques"),
+                new Player("Rafael Gonçalves"),
+                new Player("Diego Silva"),
+                new Player("Yuri Fernandes"),
+                new Player("Luan Gonçalves"),
+                new Player("Daniel de Souza"),
+                new Player("Miguel Gonçalves"),
+                new Player("Matheus Marques"),
+                new Player("Lucas Fernandes"),
+                new Player("Caio Silva"),
+                new Player("William Souza"),
+                new Player("Fernando Gonçalves"),
+                new Player("Felipe Souza"),
+                new Player("Wellington Silva"),
                 new Player("Luiz Henrique"),
-                new Player("Vinícius"),
-                new Player("Thiago"),
-                new Player("Pedro"),
-                new Player("Raul"),
-                new Player("Ruan"),
-                new Player("Ramon"),
-                new Player("Bruno"),
-                new Player("Fabio"),
-                new Player("Marcelo"),
-                new Player("Leandro"),
-                new Player("João"),
-                new Player("Antônio"),
-                new Player("Gustavo"),
+                new Player("Vinícius Marques"),
+                new Player("Thiago Fernandes"),
+                new Player("Pedro Silva"),
+                new Player("Raul Gonçalves"),
+                new Player("Ruan Marques"),
+                new Player("Ramon Fernandes"),
+                new Player("Bruno Fernandes"),
+                new Player("Fabio de Souza"),
+                new Player("Marcelo Marques"),
+                new Player("Leandro Silva"),
+                new Player("João Gonçalves"),
+                new Player("Antônio Fernandes"),
+                new Player("Gustavo Silva"),
             };
 
             return mockPlayers.Take(amount).ToList();
@@ -51,6 +52,7 @@ namespace Test
         public List<Team> GetMockTeams(int amount, User user)
         {
             var players = new List<Player>();
+            
             players = GetMockPlayers(16, user);
 
             var mockTeams = new List<Team>
@@ -91,7 +93,7 @@ namespace Test
             Assert.NotEmpty(soccer.Teams);
         }
 
-         [Fact]
+        [Fact]
         public void should_return_true_when_launched_results_are_correct()
         {
             // Cria o usuário CBF

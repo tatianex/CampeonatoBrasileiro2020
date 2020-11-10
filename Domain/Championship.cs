@@ -4,6 +4,7 @@ using System.IO;
 using System;
 using Domain.Users;
 using Domain.Teams;
+using Domain.Players;
 
 namespace Domain
 {
