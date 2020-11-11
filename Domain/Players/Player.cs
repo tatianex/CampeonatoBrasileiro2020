@@ -55,7 +55,6 @@ namespace Domain.Players
             return true;
         }
 
-        // Colocar o VALIDATE no playersService dentro de Create e o BadRequest no webapi
         public (IList<string> errors, bool isValid) Validate()
         {
             var errors = new List<string>();

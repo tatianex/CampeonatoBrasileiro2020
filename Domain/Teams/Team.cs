@@ -33,17 +33,29 @@ namespace Domain.Teams
             // Lista privada para acesso do torcedor
             _players = players;
         }
+
+        public bool ValidateTeamPlayers(List<Player> players)
+        {
+            foreach (var item in players)
+            {
+                var validation = item.Validate();
+                if (!validation.isValid)
+                {
+                    break;
+                }
+                return false;
+            }
+            return true;
+        }
         
         public bool AddPlayer(Player player, User user)
         {
             var playerAlreadyExists = _players.FirstOrDefault(x => x.Name == player.Name);
-            var playerValidation = player.Validate();
-
-
+            
             if ((user.Profile == UserProfile.CBF)
                 && (_players.Count < 32)
                 && (playerAlreadyExists == null)
-                && (playerValidation.isValid))
+                && (ValidateTeamPlayers(_players) == true))
             {
                 _players.Add(player);
                 return true;                
