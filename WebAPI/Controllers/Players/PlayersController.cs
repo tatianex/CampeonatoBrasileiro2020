@@ -37,7 +37,7 @@ namespace WebAPI.Controllers.Players
 
             if (user.Profile == UserProfile.Fan)
             {
-                return Forbid();
+                return Unauthorized();
             }
 
             var response = _playerService.CreatePlayer(request.Name);
