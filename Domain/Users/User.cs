@@ -1,53 +1,25 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Domain.People;
+using Domain.Entities;
 
 namespace Domain.Users
 {
-    public class User
+    // To do - Criar uma classe abstrata chamada Entity com Id  e guid.newguid e fazer todo mundo herdae
+    public class User : Person
     {
-        public Guid Id { get; set; } = Guid.NewGuid();    
-        public string Name { get; set; }
         public UserProfile Profile { get; set; }
 
-        public User(string name, UserProfile profile)
+        public User(string name, UserProfile profile) : base(name)
         {
-            Name = name;
             Profile = profile;
-        }
-
-        private bool ValidateUserName()
-        {
-            if (string.IsNullOrEmpty(Name))
-            {
-                return false;
-            }
-
-            var words = Name.Split(' ');
-            if (words.Length < 2)
-            {
-                return false;
-            }
-
-            foreach (var word in words)
-            {
-                if (word.Trim().Length < 2)
-                {
-                    return false;
-                }
-                if (word.Any(x => !char.IsLetter(x)))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         // Colocar o VALIDATE no usersService dentro de Create e o BadRequest no webapi
         public (IList<string> errors, bool isValid) Validate()
         {
             var errors = new List<string>();
-            if (!ValidateUserName())
+            if (!ValidateName())
             {
                 errors.Add("Nome inválido.");
             }

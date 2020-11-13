@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain.Users;
 using Domain.Players;
+using Domain.Entities;
 
 namespace Domain.Teams
 {
-    public class Team
-    {  
-        public Guid Id { get; private set; } = Guid.NewGuid();
+    public class Team : Entity
+    {
         public string Name { get; set; }
         private List<Player> _players { get; set; }
         public IReadOnlyCollection<Player> Players => _players;
