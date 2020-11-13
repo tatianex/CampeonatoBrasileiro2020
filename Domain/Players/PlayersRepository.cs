@@ -11,5 +11,10 @@ namespace Domain.Players
         {
             _players.Add(player);
         }
+
+        public static void Remove(Player player)
+        {
+            _players.Remove(player);
+        }
     }
 }

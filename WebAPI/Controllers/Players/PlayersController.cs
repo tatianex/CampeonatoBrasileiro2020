@@ -50,6 +50,39 @@ namespace WebAPI.Controllers.Players
             return Ok(response.Id);
         }
 
+        [HttpPut]
+        [Route("{id}")]
+        //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
+        public IActionResult Put(Guid id, CreatePlayerRequest request)
+        {
+            StringValues userId;
+            if(!Request.Headers.TryGetValue("UserId", out userId))
+            {
+                return Unauthorized();
+            }
+
+            var user = _usersService.GetById(Guid.Parse(userId));
+            
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            if (user.Profile == UserProfile.Fan)
+            {
+                return Unauthorized();
+            }
+
+            var response = _playerService.Update(id, request.Name);
+
+            if (!response.IsValid)
+            {
+                return BadRequest(response.Errors);
+            }
+            
+            return Ok(response.Id);
+        }
+
 
     }
 }
