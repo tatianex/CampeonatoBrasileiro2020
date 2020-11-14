@@ -50,8 +50,7 @@ namespace WebAPI.Controllers.Players
             return Ok(response.Id);
         }
 
-        [HttpPut]
-        [Route("{id}")]
+        [HttpPut("{id}")]
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
         public IActionResult Put(Guid id, CreatePlayerRequest request)
         {
@@ -83,8 +82,7 @@ namespace WebAPI.Controllers.Players
             return Ok(response.Id);
         }
 
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}")]
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
         public IActionResult Get(Guid id)
         {
