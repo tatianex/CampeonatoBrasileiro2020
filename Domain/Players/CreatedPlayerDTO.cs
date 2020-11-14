@@ -5,6 +5,7 @@ namespace Domain.Players
 {
     public class CreatedPlayerDTO
     {
+        public Player Name { get; set; }
         public Guid Id{ get; private set; }
         public IList<string> Errors{ get; set; }
         public bool IsValid { get; set; }
