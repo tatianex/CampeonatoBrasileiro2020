@@ -107,5 +107,7 @@ namespace WebAPI.Controllers.Players
             }
             return Ok(response.Id);
         }
+
+        // To do: Criar o delete  usar o 404 se não existir e o 204 (no content) se conseguir deletar.
     }
 }
