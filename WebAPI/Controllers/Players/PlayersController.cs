@@ -108,6 +108,37 @@ namespace WebAPI.Controllers.Players
             return Ok(response.Id);
         }
 
+        [HttpDelete("{id}")]
+        //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
+        public IActionResult Delete(Guid id)
+        {
+            StringValues userId;
+            if(!Request.Headers.TryGetValue("UserId", out userId))
+            {
+                return Unauthorized();
+            }
+
+            var user = _usersService.GetById(Guid.Parse(userId));
+            
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            if (user.Profile == UserProfile.Fan)
+            {
+                return Unauthorized();
+            }
+
+            var response = _playerService.GetById(id);
+
+            if (response == null)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
+
         // To do: Criar o delete  usar o 404 se não existir e o 204 (no content) se conseguir deletar.
     }
 }

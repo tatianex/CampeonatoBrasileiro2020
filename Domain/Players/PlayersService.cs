@@ -38,5 +38,14 @@ namespace Domain.Players
             }
             return new CreatedPlayerDTO(playerValidation.errors);
         }
+
+        public void Delete(Guid id)
+        {
+            var player = GetById(id);
+            if (player != null)
+            {
+                PlayersRepository.Remove(player);
+            }   
+        }
     }
 }
