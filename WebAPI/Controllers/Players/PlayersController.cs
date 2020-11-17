@@ -138,7 +138,5 @@ namespace WebAPI.Controllers.Players
             }
             return NoContent();
         }
-
-        // To do: Criar o delete  usar o 404 se não existir e o 204 (no content) se conseguir deletar.
     }
 }
