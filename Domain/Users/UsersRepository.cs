@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Domain.Infra;
 
 namespace Domain.Users
 {
@@ -9,7 +10,11 @@ namespace Domain.Users
 
         public static void Add(User user)
         {
-            _users.Add(user);
+            using (var db = new BrasileiraoContext())
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
         }
     }
 }

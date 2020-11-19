@@ -5,7 +5,7 @@ using Domain.Entities;
 
 namespace Domain.Users
 {
-    // To do - Criar uma classe abstrata chamada Entity com Id  e guid.newguid e fazer todo mundo herdae
+    
     public class User : Person
     {
         public UserProfile Profile { get; set; }
