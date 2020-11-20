@@ -8,7 +8,7 @@ namespace Domain.Players
 {
     public class Player : Person
     {
-        public int Goals { get; set;}
+        public int Goals { get; set;} = 0;
         public Team Team { get; private set; }
 
         public Player(string name) : base(name){}

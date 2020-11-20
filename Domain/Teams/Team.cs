@@ -12,15 +12,15 @@ namespace Domain.Teams
         public string Name { get; set; }
         private List<Player> _players { get; set; }
         public IReadOnlyCollection<Player> Players => _players;
-        public int DisputedMatches { get; set; }
-        public int Points { get; set; }
-        public int Victories { get; set; }
-        public int Defeats { get; set; }
-        public int Draws { get; set; }
-        public int GoalsOutcome { get; set; }
-        public int Goals { get; set; }
-        public int ConcededGoals { get; set; }
-        public double EfficiencyPercent { get; set; }
+        public int DisputedMatches { get; set; } = 0;
+        public int Points { get; set; } = 0;
+        public int Victories { get; set; } = 0;
+        public int Defeats { get; set; } = 0;
+        public int Draws { get; set; } = 0;
+        public int GoalsOutcome { get; set; } = 0;
+        public int Goals { get; set; } = 0;
+        public int ConcededGoals { get; set; } = 0;
+        public double EfficiencyPercent { get; set; } = 0;
 
         public Team(string name)
         {
