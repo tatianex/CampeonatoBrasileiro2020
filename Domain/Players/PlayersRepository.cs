@@ -1,20 +1,24 @@
-using System.Collections.Generic;
+using Domain.Infra;
 
 namespace Domain.Players
 {
-    static class PlayersRepository
+    public class PlayersRepository
     {
-        private static List<Player> _players { get; set; } = new List<Player>();
-        public static IReadOnlyCollection<Player> Players => _players;
-
-        public static void Add(Player player)
+        public void Add(Player player)
         {
-            _players.Add(player);
+            using (var db = new BrasileiraoContext())
+            {
+                db.Players.Add(player);
+                db.SaveChanges();
+            }
         }
 
-        public static void Remove(Player player)
+        public void Remove(Player player)
         {
-            _players.Remove(player);
+            using (var db = new BrasileiraoContext())
+            {
+                db.Players.Remove(player);
+            }
         }
     }
 }

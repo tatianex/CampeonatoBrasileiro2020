@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Domain.Infra;
 
 namespace Domain.Players
 {
@@ -12,15 +13,21 @@ namespace Domain.Players
 
             if (playerValidation.isValid)
             {
-                PlayersRepository.Add(player);
-                return new CreatedPlayerDTO(player.Id);
+                using (var db = new BrasileiraoContext())
+                {
+                    db.Players.Add(player);
+                    return new CreatedPlayerDTO(player.Id);
+                }
             }
             return new CreatedPlayerDTO(playerValidation.errors);
         }
 
         public Player GetById(Guid id)
         {
-            return PlayersRepository.Players.FirstOrDefault(x => x.Id == id);
+            using (var db = new BrasileiraoContext())
+            {
+                return db.Players.FirstOrDefault(x => x.Id == id);
+            }
         }
 
         public CreatedPlayerDTO Update(Guid id, string name)
@@ -30,11 +37,14 @@ namespace Domain.Players
             var updatedPlayer = new Player(name);
             var playerValidation = updatedPlayer.Validate();
 
-            if (playerValidation.isValid)
+            using (var db = new BrasileiraoContext())
             {
-                PlayersRepository.Add(updatedPlayer);
-                PlayersRepository.Remove(player);
-                return new CreatedPlayerDTO(updatedPlayer.Id);
+                if (playerValidation.isValid)
+                {
+                    db.Players.Add(updatedPlayer);
+                    db.Players.Remove(player);
+                    return new CreatedPlayerDTO(updatedPlayer.Id);
+                }
             }
             return new CreatedPlayerDTO(playerValidation.errors);
         }
@@ -42,10 +52,13 @@ namespace Domain.Players
         public Guid? Delete(Guid id)
         {
             var player = GetById(id);
-            if (player != null)
+            using (var db = new BrasileiraoContext())
             {
-                PlayersRepository.Remove(player);
-                return id;
+                if (player != null)
+                {
+                    db.Players.Remove(player);
+                    return id;
+                }
             }
             return null;
         }
