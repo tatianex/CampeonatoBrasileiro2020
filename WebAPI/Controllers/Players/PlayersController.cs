@@ -40,7 +40,7 @@ namespace WebAPI.Controllers.Players
                 return Unauthorized();
             }
 
-            var response = _playerService.CreatePlayer(request.Name);
+            var response = _playerService.CreatePlayer(request.Name, request.TeamId);
 
             if (!response.IsValid)
             {
@@ -72,7 +72,7 @@ namespace WebAPI.Controllers.Players
                 return Unauthorized();
             }
 
-            var response = _playerService.Update(id, request.Name);
+            var response = _playerService.Update(id, request.Name, request.TeamId);
 
             if (!response.IsValid)
             {

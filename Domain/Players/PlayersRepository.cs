@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Domain.Infra;
 
 namespace Domain.Players
@@ -10,6 +12,14 @@ namespace Domain.Players
             {
                 db.Players.Add(player);
                 db.SaveChanges();
+            }
+        }
+        
+        public Player GetById(Guid id)
+        {
+            using (var db = new BrasileiraoContext())
+            {
+                return db.Players.FirstOrDefault(x => x.Id == id);
             }
         }
 

@@ -6,45 +6,37 @@ namespace Domain.Players
 {
     public class PlayersService
     {
-        public CreatedPlayerDTO CreatePlayer(string name)
+        private readonly PlayersRepository _playersRepository = new PlayersRepository();
+        public CreatedPlayerDTO CreatePlayer(string name, Guid teamId)
         {
-            var player = new Player(name);
+            var player = new Player(name, teamId);
             var playerValidation = player.Validate();
 
             if (playerValidation.isValid)
             {
-                using (var db = new BrasileiraoContext())
-                {
-                    db.Players.Add(player);
-                    return new CreatedPlayerDTO(player.Id);
-                }
+                _playersRepository.Add(player);
+                return new CreatedPlayerDTO(player.Id);
             }
             return new CreatedPlayerDTO(playerValidation.errors);
         }
 
         public Player GetById(Guid id)
         {
-            using (var db = new BrasileiraoContext())
-            {
-                return db.Players.FirstOrDefault(x => x.Id == id);
-            }
+            return _playersRepository.GetById(id);
         }
 
-        public CreatedPlayerDTO Update(Guid id, string name)
+        public CreatedPlayerDTO Update(Guid id, string name, Guid teamId)
         {
             var player = GetById(id);
 
-            var updatedPlayer = new Player(name);
+            var updatedPlayer = new Player(name, teamId);
             var playerValidation = updatedPlayer.Validate();
 
-            using (var db = new BrasileiraoContext())
+            if (playerValidation.isValid)
             {
-                if (playerValidation.isValid)
-                {
-                    db.Players.Add(updatedPlayer);
-                    db.Players.Remove(player);
-                    return new CreatedPlayerDTO(updatedPlayer.Id);
-                }
+                _playersRepository.Add(updatedPlayer);
+                _playersRepository.Remove(player);
+                return new CreatedPlayerDTO(updatedPlayer.Id);
             }
             return new CreatedPlayerDTO(playerValidation.errors);
         }
@@ -52,13 +44,10 @@ namespace Domain.Players
         public Guid? Delete(Guid id)
         {
             var player = GetById(id);
-            using (var db = new BrasileiraoContext())
+            if (player != null)
             {
-                if (player != null)
-                {
-                    db.Players.Remove(player);
-                    return id;
-                }
+                _playersRepository.Remove(player);
+                return id;
             }
             return null;
         }

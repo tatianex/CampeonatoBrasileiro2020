@@ -9,7 +9,7 @@ namespace Domain.Infra
     {
         public DbSet<User> Users {get; set;}
         public DbSet<Player> Players {get; set;}
-        //public DbSet<Team> Teams {get; set;}
+        public DbSet<Team> Teams {get; set;}
 
 
         // Override pois estamos sobrescrevendo o comportamento padrão.

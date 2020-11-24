@@ -1,15 +1,26 @@
-using System.Collections.Generic;
+using Domain.Infra;
+using System;
+using System.Linq;
 
 namespace Domain.Teams
 {
-    static class TeamsRepository
+    public class TeamsRepository
     {
-        private static List<Team> _teams { get; set; } = new List<Team>();
-        public static IReadOnlyCollection<Team> Players => _teams;
-
-        public static void Add(Team team)
+        public void Add(Team team)
         {
-            _teams.Add(team);
+            using (var db = new BrasileiraoContext())
+            {
+                db.Teams.Add(team);
+                db.SaveChanges();
+            }
+        }
+
+        public Team GetById(Guid id)
+        {
+            using (var db = new BrasileiraoContext())
+            {
+                return db.Teams.FirstOrDefault(x => x.Id == id);
+            }
         }
     }
 }

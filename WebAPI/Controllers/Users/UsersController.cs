@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Domain.Users;
-using System.Collections.Generic;
-using System;
 
 namespace WebAPI.Controllers.Users
 {
