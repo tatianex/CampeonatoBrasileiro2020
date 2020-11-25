@@ -11,4 +11,4 @@ CREATE TABLE Teams (
     ConcededGoals INT NOT NULL,
     EfficiencyPercent INT NOT NULL,
     PRIMARY KEY (Id)
-)
+);

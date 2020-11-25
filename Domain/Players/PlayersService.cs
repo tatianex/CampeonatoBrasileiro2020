@@ -7,9 +7,9 @@ namespace Domain.Players
     public class PlayersService
     {
         private readonly PlayersRepository _playersRepository = new PlayersRepository();
-        public CreatedPlayerDTO CreatePlayer(string name, Guid teamId)
+        public CreatedPlayerDTO CreatePlayer(string name)
         {
-            var player = new Player(name, teamId);
+            var player = new Player(name);
             var playerValidation = player.Validate();
 
             if (playerValidation.isValid)
@@ -25,11 +25,11 @@ namespace Domain.Players
             return _playersRepository.GetById(id);
         }
 
-        public CreatedPlayerDTO Update(Guid id, string name, Guid teamId)
+        public CreatedPlayerDTO Update(Guid id, string name)
         {
             var player = GetById(id);
 
-            var updatedPlayer = new Player(name, teamId);
+            var updatedPlayer = new Player(name);
             var playerValidation = updatedPlayer.Validate();
 
             if (playerValidation.isValid)
