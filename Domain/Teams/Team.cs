@@ -11,7 +11,7 @@ namespace Domain.Teams
     {
         public string Name { get; set; }
         private List<Player> _players { get; set; }
-        public IReadOnlyCollection<Player> Players => _players;
+        public virtual IReadOnlyCollection<Player> Players => _players;
         public int DisputedMatches { get; set; } = 0;
         public int Points { get; set; } = 0;
         public int Victories { get; set; } = 0;

@@ -7,9 +7,9 @@ namespace Domain.Players
     public class PlayersService
     {
         private readonly PlayersRepository _playersRepository = new PlayersRepository();
-        public CreatedPlayerDTO CreatePlayer(string name)
+        public CreatedPlayerDTO CreatePlayer(Guid teamId, string name)
         {
-            var player = new Player(name);
+            var player = new Player(teamId, name);
             var playerValidation = player.Validate();
 
             if (playerValidation.isValid)
