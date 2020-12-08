@@ -6,7 +6,7 @@ namespace Domain.Teams
     public class TeamsService
     {
         private readonly TeamsRepository _teamsRepository = new TeamsRepository();
-        public CreatedTeamDTO CreateTeam(string name, List<Players> players)
+        public CreatedTeamDTO CreateTeam(string name)
         {
             var team = new Team(name);
             var teamValidation = team.Validate();
