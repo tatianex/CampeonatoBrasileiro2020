@@ -20,7 +20,7 @@ namespace WebAPI.Controllers.Players
 
         [HttpPost]
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
-        public IActionResult Post(CreateTeamRequest request)
+        public IActionResult Create(CreateTeamRequest request)
         {
             StringValues userId;
             if(!Request.Headers.TryGetValue("UserId", out userId))
@@ -40,14 +40,14 @@ namespace WebAPI.Controllers.Players
                 return Unauthorized();
             }
             
-            var response = _teamService.CreateTeam(request.Name);
+            // var response = _teamService.CreateTeam(request.Name, request.Players);
 
-            if (!response.IsValid)
-            {
-                return BadRequest(response.Errors);
-            }
+            // if (!response.IsValid)
+            // {
+            //     return BadRequest(response.Errors);
+            // }
            
-            return Ok(response.Id);
+            // return Ok(response.Id);
         }
 
 

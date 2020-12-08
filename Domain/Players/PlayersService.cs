@@ -1,6 +1,4 @@
 using System;
-using System.Linq;
-using Domain.Infra;
 
 namespace Domain.Players
 {
@@ -23,22 +21,6 @@ namespace Domain.Players
         public Player GetById(Guid id)
         {
             return _playersRepository.GetById(id);
-        }
-
-        public CreatedPlayerDTO Update(Guid id, string name)
-        {
-            var player = GetById(id);
-
-            var updatedPlayer = new Player(name);
-            var playerValidation = updatedPlayer.Validate();
-
-            if (playerValidation.isValid)
-            {
-                _playersRepository.Add(updatedPlayer);
-                _playersRepository.Remove(player);
-                return new CreatedPlayerDTO(updatedPlayer.Id);
-            }
-            return new CreatedPlayerDTO(playerValidation.errors);
         }
 
         public Guid? Delete(Guid id)

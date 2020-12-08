@@ -22,5 +22,13 @@ namespace Domain.Users
                 return db.Users.FirstOrDefault(x => x.Id == id);
             }
         }
+
+        public User GetByEmail(string email)
+        {
+            using (var db = new BrasileiraoContext())
+            {
+                return db.Users.FirstOrDefault(x => x.Email == email);
+            }
+        }
     }
 }

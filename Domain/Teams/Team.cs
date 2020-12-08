@@ -78,7 +78,7 @@ namespace Domain.Teams
             }
         }
 
-        private bool ValidateTeamName()
+        protected bool ValidateTeamName()
         {
             if (string.IsNullOrEmpty(Name))
             {
@@ -86,6 +86,7 @@ namespace Domain.Teams
             }
 
             var words = Name.Split(' ');
+
             foreach (var word in words)
             {
                 if (word.Trim().Length < 2)
@@ -97,6 +98,7 @@ namespace Domain.Teams
                     return false;
                 }
             }
+
             return true;
         }
 

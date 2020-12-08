@@ -9,9 +9,13 @@ namespace Domain.Users
     public class User : Person
     {
         public UserProfile Profile { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
 
-        public User(string name, UserProfile profile) : base(name)
+        public User(string name, string password, string email, UserProfile profile) : base(name)
         {
+            Password = password;
+            Email = email;
             Profile = profile;
         }
 

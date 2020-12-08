@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 
 namespace Domain.Teams
 {
     public class TeamsService
     {
         private readonly TeamsRepository _teamsRepository = new TeamsRepository();
-        public CreatedTeamDTO CreateTeam(string name)
+        public CreatedTeamDTO CreateTeam(string name, List<Players> players)
         {
             var team = new Team(name);
             var teamValidation = team.Validate();

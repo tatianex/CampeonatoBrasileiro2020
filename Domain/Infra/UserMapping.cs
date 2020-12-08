@@ -12,6 +12,16 @@ namespace Domain.Infra
                 .Property(user => user.Name)
                 .IsRequired()
                 .HasMaxLength(100);
+
+            builder
+                .Property(user => user.Email)
+                .IsRequired()
+                .HasMaxLength(250);
+
+            builder
+                .Property(user => user.Password)
+                .IsRequired()
+                .HasMaxLength(50);
         }
     }
 }
