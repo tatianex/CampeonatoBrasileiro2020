@@ -10,8 +10,7 @@ namespace Domain.Teams
     public class Team : Entity
     {
         public string Name { get; set; }
-        private List<Player> _players { get; set; }
-        public virtual IReadOnlyCollection<Player> Players => _players;
+        public virtual IList<Player> Players { get; set; }
         public int DisputedMatches { get; set; } = 0;
         public int Points { get; set; } = 0;
         public int Victories { get; set; } = 0;
@@ -27,25 +26,29 @@ namespace Domain.Teams
             Name = name;
         }
 
-        public Team(string name, List<Player> players)
+        public Team(string name, List<string> players)
         {
-            Name = name;
-            // Lista privada para acesso do torcedor
-            _players = players;
+             Name = name;
+            if (players != null)
+            {
+                Players = players
+                    .Select(playerName => new Player(Id, playerName))
+                    .ToList();
+            }
         }
         
         public bool AddPlayer(Player player, User user)
         {
-            var playerAlreadyExists = _players.FirstOrDefault(x => x.Name == player.Name);
+            var playerAlreadyExists = Players.FirstOrDefault(x => x.Name == player.Name);
             var playerValidation = player.Validate();
 
 
             if ((user.Profile == UserProfile.CBF)
-                && (_players.Count < 32)
+                && (Players.Count < 32)
                 && (playerAlreadyExists == null)
                 && (playerValidation.isValid))
             {
-                _players.Add(player);
+                Players.Add(player);
                 return true;                
             }
             return false;          
@@ -55,8 +58,8 @@ namespace Domain.Teams
         {
             if (user.Profile == UserProfile.CBF)
             {    
-                var RemovedPlayer = _players.First(x => x.Name == name);
-                _players.Remove(RemovedPlayer);
+                var RemovedPlayer = Players.First(x => x.Name == name);
+                Players.Remove(RemovedPlayer);
                 return true;
             }
             return false;
@@ -73,7 +76,7 @@ namespace Domain.Teams
         {
             foreach (var scorer in scorers)
             {
-                Player p = team._players.Find(x => x.Name == scorer.Name);
+                Player p = team.Players.FirstOrDefault(x => x.Name == scorer.Name);
                 if (p != null) p.Goals += scorer.Goals;
             }
         }
