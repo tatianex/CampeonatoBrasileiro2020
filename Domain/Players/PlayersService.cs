@@ -1,18 +1,20 @@
 using System;
+using Domain.Common;
 
 namespace Domain.Players
 {
     public class PlayersService
     {
-        private readonly PlayersRepository _playersRepository = new PlayersRepository();
-        public CreatedPlayerDTO CreatePlayer(Guid teamId, string name)
+        private readonly IRepository<Player> _playersRepository;
+
+        public CreatedPlayerDTO Create(Guid teamId, string name)
         {
             var player = new Player(teamId, name);
             var playerValidation = player.Validate();
 
             if (playerValidation.isValid)
             {
-                _playersRepository.Add(player);
+                PlayersRepository.Add(player);
                 return new CreatedPlayerDTO(player.Id);
             }
             return new CreatedPlayerDTO(playerValidation.errors);
@@ -20,18 +22,12 @@ namespace Domain.Players
 
         public Player GetById(Guid id)
         {
-            return _playersRepository.GetById(id);
+            return _playersRepository.Get(id);
         }
 
-        public Guid? Delete(Guid id)
+        public Guid? Remove(Guid id)
         {
-            var player = GetById(id);
-            if (player != null)
-            {
-                _playersRepository.Remove(player);
-                return id;
-            }
-            return null;
+            return PlayersRepository.Remove(id);
         }
     }
 }

@@ -1,6 +1,5 @@
-using System;
 using System.Linq;
-using Domain.Entities;
+using Domain.Common;
 
 namespace Domain.People
 {
@@ -14,7 +13,7 @@ namespace Domain.People
             Name = name;
         }
 
-
+        // Este método continua sendo privado, porém é acessível pelos filhos
         protected bool ValidateName()
         {
             if (string.IsNullOrEmpty(Name))

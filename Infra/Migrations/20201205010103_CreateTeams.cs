@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Domain.Migrations
+namespace Infra.Migrations
 {
     public partial class CreateTeams : Migration
     {

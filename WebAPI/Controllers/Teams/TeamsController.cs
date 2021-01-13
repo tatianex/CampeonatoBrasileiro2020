@@ -10,17 +10,17 @@ namespace WebAPI.Controllers.Players
     [Route("[controller]")]
     public class TeamsController : ControllerBase
     {
-        public readonly TeamsService _teamService;
-        public readonly UsersService _usersService;
-        public TeamsController()
+        public readonly ITeamsService _teamsService;
+        public readonly IUsersService _usersService;
+        public TeamsController(IUsersService usersService, ITeamsService teamsService)
         {
-            _teamService = new TeamsService();
-            _usersService = new UsersService();
+            _usersService = usersService;
+            _teamsService = teamsService;
         }
 
         [HttpPost]
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
-        public IActionResult Post(CreateTeamRequest request)
+        public IActionResult Create(CreateTeamRequest request)
         {
             StringValues userId;
             if(!Request.Headers.TryGetValue("UserId", out userId))
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers.Players
                 return Unauthorized();
             }
             
-            var response = _teamService.CreateTeam(request.Name);
+            var response = _teamsService.Create(request.Name, request.Players);
 
             if (!response.IsValid)
             {

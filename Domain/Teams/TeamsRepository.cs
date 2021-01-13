@@ -1,26 +1,31 @@
-using Domain.Infra;
 using System;
+using Domain.Common;
 using System.Linq;
 
 namespace Domain.Teams
 {
-    public class TeamsRepository
+    public class TeamsRepository: ITeamsRepository
     {
-        public void Add(Team team)
+        private readonly IRepository<Team> _repository;
+
+        public TeamsRepository(IRepository<Team> repository)
         {
-            using (var db = new BrasileiraoContext())
-            {
-                db.Teams.Add(team);
-                db.SaveChanges();
-            }
+            _repository = repository;
         }
 
-        public Team GetById(Guid id)
+        public void Add(Team team)
         {
-            using (var db = new BrasileiraoContext())
-            {
-                return db.Teams.FirstOrDefault(x => x.Id == id);
-            }
+            _repository.Add(team);
+        }
+
+        public Team Get(Func<Team, bool> predicate)
+        {
+            return _repository.Get(predicate);
+        }
+
+        public Team Get(Guid id)
+        {
+            return _repository.Get(id);
         }
     }
 }

@@ -2,7 +2,7 @@ using Domain.Teams;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Domain.Infra
+namespace Infra
 {
     public class TeamMapping : IEntityTypeConfiguration<Team>
     {

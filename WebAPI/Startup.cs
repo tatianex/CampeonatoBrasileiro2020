@@ -1,10 +1,13 @@
-using Domain.Infra;
+using Infra;
+using Domain.Users;
+using Domain.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Domain.Teams;
 
 namespace WebAPI
 {
@@ -21,6 +24,13 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            // services.AddSingleton(typeof (IRepository<>), typeof (RepositoryInMemory<>));
+            services.AddScoped(typeof (IRepository<>), typeof (Repository<>));
+            services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<ITeamsRepository, TeamsRepository>();
+            services.AddScoped<ITeamsService, TeamsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,10 +38,10 @@ namespace WebAPI
         {
             using (var db = new BrasileiraoContext())
             {
-                //Cria o DB quando este ainda não existir.
+                // Este comando irá criar o banco de dados (quando ele ainda não existir)
                 db.Database.Migrate();
             }
-            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

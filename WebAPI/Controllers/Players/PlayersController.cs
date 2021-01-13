@@ -10,17 +10,18 @@ namespace WebAPI.Controllers.Players
     [Route("[controller]")]
     public class PlayersController : ControllerBase
     {
-        public readonly PlayersService _playerService;
-        public readonly UsersService _usersService;
-        public PlayersController()
+        public readonly PlayersService _playersService;
+        public readonly IUsersService _usersService;
+
+        public PlayersController(IUsersService usersService)
         {
-            _playerService = new PlayersService();
-            _usersService = new UsersService();
+            _usersService = usersService;
+            _playersService = new PlayersService();
         }
 
         [HttpPost]
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
-        public IActionResult Post(CreatePlayerRequest request)
+        public IActionResult Create(CreatePlayerRequest request)
         {
             StringValues userId;
             if(!Request.Headers.TryGetValue("UserId", out userId))
@@ -40,7 +41,7 @@ namespace WebAPI.Controllers.Players
                 return Unauthorized();
             }
 
-            var response = _playerService.CreatePlayer(request.TeamId, request.Name);
+            var response = _playersService.Create(request.TeamId, request.Name);
 
             if (!response.IsValid)
             {
@@ -68,7 +69,7 @@ namespace WebAPI.Controllers.Players
                 return Unauthorized();
             }
 
-            var response = _playerService.GetById(id);
+            var response = _playersService.GetById(id);
 
             if (response == null)
             {
@@ -78,8 +79,7 @@ namespace WebAPI.Controllers.Players
         }
 
         [HttpDelete("{id}")]
-        //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
-        public IActionResult Delete(Guid id)
+        public IActionResult Remove(Guid id)
         {
             StringValues userId;
             if(!Request.Headers.TryGetValue("UserId", out userId))
@@ -88,23 +88,24 @@ namespace WebAPI.Controllers.Players
             }
 
             var user = _usersService.GetById(Guid.Parse(userId));
-            
+
             if (user == null)
             {
                 return Unauthorized();
             }
 
-            if (user.Profile == UserProfile.Fan)
+            if (user.Profile != UserProfile.CBF)
             {
                 return Unauthorized();
             }
 
-            var response = _playerService.GetById(id);
+            var playerRemoved = _playersService.Remove(id);
 
-            if (response == null)
+            if (playerRemoved == null)
             {
                 return NotFound();
             }
+            
             return NoContent();
         }
     }

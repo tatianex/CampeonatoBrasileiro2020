@@ -3,20 +3,26 @@ using Domain.Common;
 
 namespace Domain.Users
 {
-    public class UsersService
+    public class UsersService : IUsersService
     {
-        private readonly UsersRepository _usersRepository = new UsersRepository();
+        private readonly IUsersRepository _usersRepository;
+
+        public UsersService(IUsersRepository usersRepository)
+        {
+            _usersRepository = usersRepository;
+        }
+
         public CreatedUserDTO Create(
             string name,
-            UserProfile profile,
             string email,
+            UserProfile profile,
             string password
         )
         {
             var crypt = new Crypt();
             var cryptPassword = crypt.CreateMD5(password);
             
-            var user = new User(name, cryptPassword, email, profile);
+            var user = new User(name, email, profile, cryptPassword);
             var userValidation = user.Validate();
 
             if (userValidation.isValid)
@@ -29,7 +35,7 @@ namespace Domain.Users
 
         public User GetById(Guid id)
         {
-            return _usersRepository.GetById(id);
+            return _usersRepository.Get(id);
         }
     }
 }

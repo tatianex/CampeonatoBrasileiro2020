@@ -9,15 +9,15 @@ namespace WebAPI.Controllers.Users
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {
-        public readonly UsersService _usersService;
-        public UsersController()
+        public readonly IUsersService _usersService;
+        public UsersController(IUsersService usersService)
         {
-            _usersService = new UsersService();
+            _usersService = usersService;
         }
 
         [HttpPost]
         //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
-        public IActionResult Post(CreateUserRequest request)
+        public IActionResult Create(CreateUserRequest request)
         {
             StringValues userId;
             if(!Request.Headers.TryGetValue("UserId", out userId))
@@ -39,8 +39,8 @@ namespace WebAPI.Controllers.Users
 
             var response = _usersService.Create(
                 request.Name,
-                request.Profile,
                 request.Email,
+                request.Profile,
                 request.Password
             );
 
@@ -48,7 +48,21 @@ namespace WebAPI.Controllers.Users
             {
                 return BadRequest(response.Errors);
             }
+
             return NoContent();
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            var user = _usersService.GetById(id);
+            
+            if (user == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(user);
         }
 
 

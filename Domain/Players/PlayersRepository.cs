@@ -1,34 +1,40 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using Domain.Infra;
+using Domain.Common;
 
 namespace Domain.Players
 {
     public class PlayersRepository
     {
-        public void Add(Player player)
+        private static List<Player> _players = new List<Player>();
+        public static IReadOnlyCollection<Player> Players => _players;
+        private readonly IRepository<Player> _repository;
+
+        public static void Add(Player player)
         {
-            using (var db = new BrasileiraoContext())
-            {
-                db.Players.Add(player);
-                db.SaveChanges();
-            }
-        }
-        
-        public Player GetById(Guid id)
-        {
-            using (var db = new BrasileiraoContext())
-            {
-                return db.Players.FirstOrDefault(x => x.Id == id);
-            }
+            _players.Add(player);
         }
 
-        public void Remove(Player player)
+        public static Guid? Remove(Guid id)
         {
-            using (var db = new BrasileiraoContext())
-            {
-                db.Players.Remove(player);
+            var player = _players.FirstOrDefault(x => x.Id == id);
+            if (player == null){
+                return null;
             }
+
+            _players.Remove(player);
+            return id;
+        }
+
+        public Player Get(Func<Player, bool> predicate)
+        {
+            return _repository.Get(predicate);
+        }
+
+        public Player Get(Guid id)
+        {
+            return _repository.Get(id);
         }
     }
 }

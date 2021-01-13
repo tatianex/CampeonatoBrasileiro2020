@@ -7,11 +7,11 @@ namespace WebAPI.Controllers.Auth
     [Route("[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly AuthService _authService;
+        private readonly IAuthService _authService;
         
-        public AuthController()
+        public AuthController(IAuthService authService)
         {
-            _authService = new AuthService();
+            _authService = authService;
         }
 
         [HttpPost("login")]

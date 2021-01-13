@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain.Users;
 using Domain.Players;
-using Domain.Entities;
+using Domain.Common;
 
 namespace Domain.Teams
 {
@@ -21,7 +21,7 @@ namespace Domain.Teams
         public int ConcededGoals { get; set; } = 0;
         public double EfficiencyPercent { get; set; } = 0;
 
-        public Team(string name)
+        public Team(string name, IList<string> playersNames)
         {
             Name = name;
         }
@@ -111,6 +111,11 @@ namespace Domain.Teams
             if (!ValidateTeamName())
             {
                 errors.Add("Nome inválido.");
+            }
+            if (Players != null)
+            {
+                Players.Any(player => !player.Validate().isValid);
+                errors.Add("Há jogadores inválidos");
             }
             return (errors, errors.Count == 0);
         }

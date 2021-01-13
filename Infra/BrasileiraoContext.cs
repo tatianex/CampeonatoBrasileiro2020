@@ -4,13 +4,13 @@ using Domain.Players;
 using Domain.Teams;
 using System.Reflection;
 
-namespace Domain.Infra
+namespace Infra
 {
     public class BrasileiraoContext : DbContext
     {
-        public DbSet<User> Users {get; set;}
-        public DbSet<Player> Players {get; set;}
-        public DbSet<Team> Teams {get; set;}
+        public DbSet<User> Users { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Team> Teams { get; set; }
 
 
         // Override pois estamos sobrescrevendo o comportamento padrão.

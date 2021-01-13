@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using Domain.People;
 using System.Text.RegularExpressions;
-using Domain.Entities;
 
 namespace Domain.Users
 {
@@ -10,14 +8,14 @@ namespace Domain.Users
     public class User : Person
     {
         public UserProfile Profile { get; set; }
-        public string Password { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
 
-        public User(string name, string password, string email, UserProfile profile) : base(name)
+        public User(string name, string email, UserProfile profile, string password) : base(name)
         {
-            Password = password;
             Email = email;
             Profile = profile;
+            Password = password;
         }
 
         private bool ValidateEmail()

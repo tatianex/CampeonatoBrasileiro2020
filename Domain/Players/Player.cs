@@ -15,7 +15,7 @@ namespace Domain.Players
 
         public Player (Guid teamId, string name) : base(name)
         {
-            Name = name;
+            TeamId = teamId;
         }
         public Player(string name) : base(name){}
         
