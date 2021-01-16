@@ -8,7 +8,7 @@ namespace Domain.Players
 {
     public class Player : Person
     {
-        public int Goals { get; set;} = 0;
+        public int Goals { get; set;}
         // A propriedade virtual indica ao EF que é uma propriedade de navegação
         public virtual Team Team { get; private set; }
         public Guid TeamId { get; private set; }
@@ -17,7 +17,6 @@ namespace Domain.Players
         {
             TeamId = teamId;
         }
-        public Player(string name) : base(name){}
         
         public Player(string name, Team team, int goals, User user) : base(name)
         {

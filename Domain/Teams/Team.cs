@@ -21,12 +21,7 @@ namespace Domain.Teams
         public int ConcededGoals { get; set; } = 0;
         public double EfficiencyPercent { get; set; } = 0;
 
-        public Team(string name, IList<string> playersNames)
-        {
-            Name = name;
-        }
-
-        public Team(string name, List<string> players)
+        public Team(string name, IList<string> players)
         {
              Name = name;
             if (players != null)
@@ -36,7 +31,73 @@ namespace Domain.Teams
                     .ToList();
             }
         }
-        
+
+         protected Team() {}
+
+        protected bool ValidateName()
+        {
+            if (string.IsNullOrEmpty(Name))
+            {
+                return false;
+            }
+
+            var words = Name.Split(' ');
+
+            foreach (var word in words)
+            {
+                if (word.Trim().Length < 2)
+                {
+                    return false;
+                }
+                if (word.Any(x => !char.IsLetter(x)))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        protected bool ValidateTeamName()
+        {
+            if (string.IsNullOrEmpty(Name))
+            {
+                return false;
+            }
+
+            var words = Name.Split(' ');
+
+            foreach (var word in words)
+            {
+                if (word.Trim().Length < 2)
+                {
+                    return false;
+                }
+                if (word.Any(x => !char.IsLetter(x)))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public (IList<string> errors, bool isValid) Validate()
+        {
+            var errors = new List<string>();
+            if (!ValidateTeamName())
+            {
+                errors.Add("Nome inválido.");
+            }
+            if (Players != null)
+            {
+                Players.Any(player => !player.Validate().isValid);
+                errors.Add("Há jogadores inválidos");
+            }
+            return (errors, errors.Count == 0);
+        }
+
+
         public bool AddPlayer(Player player, User user)
         {
             var playerAlreadyExists = Players.FirstOrDefault(x => x.Name == player.Name);
@@ -80,45 +141,5 @@ namespace Domain.Teams
                 if (p != null) p.Goals += scorer.Goals;
             }
         }
-
-        protected bool ValidateTeamName()
-        {
-            if (string.IsNullOrEmpty(Name))
-            {
-                return false;
-            }
-
-            var words = Name.Split(' ');
-
-            foreach (var word in words)
-            {
-                if (word.Trim().Length < 2)
-                {
-                    return false;
-                }
-                if (word.Any(x => !char.IsLetter(x)))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public (IList<string> errors, bool isValid) Validate()
-        {
-            var errors = new List<string>();
-            if (!ValidateTeamName())
-            {
-                errors.Add("Nome inválido.");
-            }
-            if (Players != null)
-            {
-                Players.Any(player => !player.Validate().isValid);
-                errors.Add("Há jogadores inválidos");
-            }
-            return (errors, errors.Count == 0);
-        }
-    
     }
 }

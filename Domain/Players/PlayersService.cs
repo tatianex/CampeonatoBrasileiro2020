@@ -20,11 +20,6 @@ namespace Domain.Players
             return new CreatedPlayerDTO(playerValidation.errors);
         }
 
-        public Player GetById(Guid id)
-        {
-            return _playersRepository.Get(id);
-        }
-
         public Guid? Remove(Guid id)
         {
             return PlayersRepository.Remove(id);

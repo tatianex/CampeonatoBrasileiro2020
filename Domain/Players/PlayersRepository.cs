@@ -9,7 +9,6 @@ namespace Domain.Players
     {
         private static List<Player> _players = new List<Player>();
         public static IReadOnlyCollection<Player> Players => _players;
-        private readonly IRepository<Player> _repository;
 
         public static void Add(Player player)
         {
@@ -27,14 +26,5 @@ namespace Domain.Players
             return id;
         }
 
-        public Player Get(Func<Player, bool> predicate)
-        {
-            return _repository.Get(predicate);
-        }
-
-        public Player Get(Guid id)
-        {
-            return _repository.Get(id);
-        }
     }
 }

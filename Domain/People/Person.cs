@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Domain.Common;
 
@@ -10,6 +11,7 @@ namespace Domain.People
 
         public Person(string name)
         {
+            Id = Guid.NewGuid();
             Name = name;
         }
 

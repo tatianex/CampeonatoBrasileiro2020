@@ -51,33 +51,6 @@ namespace WebAPI.Controllers.Players
             return Ok(response.Id);
         }
 
-
-        [HttpGet("{id}")]
-        //IActionResult é mais genérico e conseguimos retornar tanto o Unauthorized, quanto o Ok.
-        public IActionResult Get(Guid id)
-        {
-            StringValues userId;
-            if(!Request.Headers.TryGetValue("UserId", out userId))
-            {
-                return Unauthorized();
-            }
-
-            var user = _usersService.GetById(Guid.Parse(userId));
-            
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-
-            var response = _playersService.GetById(id);
-
-            if (response == null)
-            {
-                return NotFound();
-            }
-            return Ok(response.Id);
-        }
-
         [HttpDelete("{id}")]
         public IActionResult Remove(Guid id)
         {

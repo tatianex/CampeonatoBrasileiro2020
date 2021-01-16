@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Domain.People;
 using System.Text.RegularExpressions;
+using System;
 
 namespace Domain.Users
 {
@@ -13,6 +14,7 @@ namespace Domain.Users
 
         public User(string name, string email, UserProfile profile, string password) : base(name)
         {
+            Id = Guid.NewGuid();
             Email = email;
             Profile = profile;
             Password = password;
