@@ -13,9 +13,9 @@ namespace Infra
             var cryptPassword = crypt.CreateMD5("admin123");
 
             builder.HasData(new User(
+                UserProfile.CBF,
                 "Ademir Ademilson",
                 "ademir@bol.com",
-                UserProfile.CBF,
                 cryptPassword
             ));
 

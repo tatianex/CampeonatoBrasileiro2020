@@ -11,7 +11,6 @@ namespace Domain.People
 
         public Person(string name)
         {
-            Id = Guid.NewGuid();
             Name = name;
         }
 

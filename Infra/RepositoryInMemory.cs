@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain.Common;
 
 namespace Infra
 {
-    public class RepositoryInMemory<T> : IRepository<T> where T : Entity
+    public class RepositoryInMemory<T>
     {
         private List<T> _entities = new List<T>();
         public IReadOnlyCollection<T> Entities => _entities;
@@ -22,7 +21,7 @@ namespace Infra
 
         public T Get(Guid id)
         {
-            return _entities.FirstOrDefault(x => x.Id == id);
+            return _entities.FirstOrDefault();
         }
     }
 }

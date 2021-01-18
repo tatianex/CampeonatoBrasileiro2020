@@ -12,11 +12,10 @@ namespace Domain.Users
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public User(string name, string email, UserProfile profile, string password) : base(name)
+        public User(UserProfile profile, string name, string email, string password) : base(name)
         {
-            Id = Guid.NewGuid();
-            Email = email;
             Profile = profile;
+            Email = email;
             Password = password;
         }
 

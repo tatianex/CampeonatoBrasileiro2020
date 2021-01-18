@@ -4,7 +4,7 @@ using Domain.Users;
 
 namespace Domain.Authentication
 {
-    public class AuthService
+    public class AuthService : IAuthService
     {
         private readonly IUsersRepository _usersRepository;
 
@@ -27,12 +27,6 @@ namespace Domain.Authentication
             return user.Password == cryptPassword
                 ? new AuthResponse(user.Id)
                 : new AuthResponse();
-        }
-        
-        [Obsolete("Utilize o método do IUsersService")]
-        public User GetById(Guid id)
-        {
-            return _usersRepository.Get(id);
         }
     }
 }
