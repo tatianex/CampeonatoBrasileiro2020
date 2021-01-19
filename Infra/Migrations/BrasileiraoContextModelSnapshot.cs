@@ -120,7 +120,7 @@ namespace Infra.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("13fcdd15-c2b3-4c8e-8c12-3c1a7d90466b"),
+                            Id = new Guid("7a4d6f60-c4e7-454c-bbc7-7b5c7afcb982"),
                             Email = "ademir@bol.com",
                             Name = "Ademir Ademilson",
                             Password = "0192023A7BBD73250516F069DF18B500",

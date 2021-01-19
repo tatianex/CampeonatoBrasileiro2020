@@ -25,7 +25,7 @@ namespace Domain.Teams
 
         public Team Get(Guid id)
         {
-            return _repository.Get(id);
+            return _repository.Get(x => x.Id == id);
         }
     }
 }

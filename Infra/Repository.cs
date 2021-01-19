@@ -21,14 +21,5 @@ namespace Infra
                 return db.Find<T>(predicate);
             }
         }
-
-        public T Get(Guid id)
-        {
-            using (var db = new BrasileiraoContext())
-            {
-                Func<Entity, bool> findById = x => x.Id == id;
-                return db.Find<T>(findById);
-            }
-        }
     }
 }
