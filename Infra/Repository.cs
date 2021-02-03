@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Domain.Common;
 
 namespace Infra
@@ -19,6 +20,14 @@ namespace Infra
             using (var db = new BrasileiraoContext())
             {
                 return db.Find<T>(predicate);
+            }
+        }
+
+        public T Get(Guid id)
+        {
+            using (var db = new BrasileiraoContext())
+            {
+                return db.Set<T>().SingleOrDefault(x => x.Id == id);
             }
         }
     }

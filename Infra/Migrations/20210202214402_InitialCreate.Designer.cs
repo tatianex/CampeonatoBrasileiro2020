@@ -4,14 +4,16 @@ using Infra;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infra.Migrations
 {
     [DbContext(typeof(BrasileiraoContext))]
-    partial class BrasileiraoContextModelSnapshot : ModelSnapshot
+    [Migration("20210202214402_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,7 +122,7 @@ namespace Infra.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6985423c-480f-49f2-ab67-73eb547723f3"),
+                            Id = new Guid("b9ef90ef-b659-49c8-b32d-6b7826d4ef1f"),
                             Email = "admin@email.com",
                             Name = "System Admin",
                             Password = "0192023A7BBD73250516F069DF18B500",

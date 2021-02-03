@@ -199,15 +199,15 @@ namespace Domain
                         team1.Defeats++;
                     }
 
-                    // Calcula percentual de eficiência de cada time
-                    team1.EfficiencyPercent = team1.GetEfficiency(round, team1, user);
-                    team2.EfficiencyPercent = team2.GetEfficiency(round, team2, user);
+                    // // Calcula percentual de eficiência de cada time
+                    // team1.EfficiencyPercent = team1.GetEfficiency(round, team1, user);
+                    // team2.EfficiencyPercent = team2.GetEfficiency(round, team2, user);
 
-                    List<Player> scorersTeam1 = scorers.FindAll(x => x.Team == team1);
-                    List<Player> scorersTeam2 = scorers.FindAll(x => x.Team == team2);
+                    // List<Player> scorersTeam1 = scorers.FindAll(x => x.Team == team1);
+                    // List<Player> scorersTeam2 = scorers.FindAll(x => x.Team == team2);
                     
-                    Team.LaunchScorerGoals(team1, scorersTeam1, user);
-                    Team.LaunchScorerGoals(team2, scorersTeam2, user);
+                    // Team.LaunchScorerGoals(team1, scorersTeam1, user);
+                    // Team.LaunchScorerGoals(team2, scorersTeam2, user);
                 }
                 return true;
             }

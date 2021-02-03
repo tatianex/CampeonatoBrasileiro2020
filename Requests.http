@@ -1,0 +1,10 @@
+POST https://localhost:5001/users HTTP/1.1
+content-type: application/json
+UserId: 8f74c74f-3e5a-446d-a244-f8647c5d3c05
+
+{
+    "name": "Jhon Wick",
+    "profile": 0,
+    "password": "123456",
+    "email": "jhon.wick5@gmail.com"
+}

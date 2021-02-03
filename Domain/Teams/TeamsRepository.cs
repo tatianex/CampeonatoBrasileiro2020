@@ -1,6 +1,5 @@
 using System;
 using Domain.Common;
-using System.Linq;
 
 namespace Domain.Teams
 {
@@ -25,7 +24,7 @@ namespace Domain.Teams
 
         public Team Get(Guid id)
         {
-            return _repository.Get(x => x.Id == id);
+            return _repository.Get(id);
         }
     }
 }

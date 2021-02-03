@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infra.Migrations
 {
     [DbContext(typeof(BrasileiraoContext))]
-    [Migration("20210119001128_InitialMigrate")]
-    partial class InitialMigrate
+    [Migration("20210202233520_moreChanges")]
+    partial class moreChanges
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -122,9 +122,9 @@ namespace Infra.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7a4d6f60-c4e7-454c-bbc7-7b5c7afcb982"),
-                            Email = "ademir@bol.com",
-                            Name = "Ademir Ademilson",
+                            Id = new Guid("07b6c56c-77c7-4e73-9d6c-2564300eb927"),
+                            Email = "admin@email.com",
+                            Name = "System Admin",
                             Password = "0192023A7BBD73250516F069DF18B500",
                             Profile = 0
                         });

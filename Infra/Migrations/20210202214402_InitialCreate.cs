@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infra.Migrations
 {
-    public partial class InitialMigrate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -66,7 +66,7 @@ namespace Infra.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "Name", "Password", "Profile" },
-                values: new object[] { new Guid("7a4d6f60-c4e7-454c-bbc7-7b5c7afcb982"), "ademir@bol.com", "Ademir Ademilson", "0192023A7BBD73250516F069DF18B500", 0 });
+                values: new object[] { new Guid("b9ef90ef-b659-49c8-b32d-6b7826d4ef1f"), "admin@email.com", "System Admin", "0192023A7BBD73250516F069DF18B500", 0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Players_TeamId",

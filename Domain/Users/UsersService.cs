@@ -13,9 +13,9 @@ namespace Domain.Users
         }
 
         public CreatedUserDTO Create(
+            UserProfile profile,
             string name,
             string email,
-            UserProfile profile,
             string password
         )
         {
@@ -31,11 +31,11 @@ namespace Domain.Users
                 return new CreatedUserDTO(user.Id);
             }
             return new CreatedUserDTO(userValidation.errors);
-        }
+        } 
 
         public User GetById(Guid id)
         {
-            return _usersRepository.Get(x => x.Id == id);
+            return _usersRepository.Get(id);
         }
     }
 }

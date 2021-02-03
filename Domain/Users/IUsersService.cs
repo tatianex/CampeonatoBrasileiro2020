@@ -5,9 +5,9 @@ namespace Domain.Users
     public interface IUsersService
     {
         CreatedUserDTO Create(
+            UserProfile profile,
             string name,
             string email,
-            UserProfile profile,
             string password
         );
 

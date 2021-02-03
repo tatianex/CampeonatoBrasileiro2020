@@ -3,7 +3,7 @@ using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infra
+namespace Infra.Mappings
 {
     public class UserMapping : IEntityTypeConfiguration<User>
     {
@@ -14,8 +14,8 @@ namespace Infra
 
             builder.HasData(new User(
                 UserProfile.CBF,
-                "Ademir Ademilson",
-                "ademir@bol.com",
+                "System Admin",
+                "admin@email.com",
                 cryptPassword
             ));
 

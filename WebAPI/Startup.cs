@@ -40,12 +40,9 @@ namespace WebAPI
             services.AddControllers();
 
             // services.AddSingleton(typeof (IRepository<>), typeof (RepositoryInMemory<>));
-            services.AddScoped(typeof (IRepository<>), typeof (Repository<>));
+             services.AddScoped(typeof (IRepository<>), typeof (Repository<>));
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IUsersService, UsersService>();
-            services.AddScoped<ITeamsRepository, TeamsRepository>();
-            services.AddScoped<ITeamsService, TeamsService>();
-            services.AddScoped<IAuthService, AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

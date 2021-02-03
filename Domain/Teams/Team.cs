@@ -98,48 +98,48 @@ namespace Domain.Teams
         }
 
 
-        public bool AddPlayer(Player player, User user)
-        {
-            var playerAlreadyExists = Players.FirstOrDefault(x => x.Name == player.Name);
-            var playerValidation = player.Validate();
+        // public bool AddPlayer(Player player, User user)
+        // {
+        //     var playerAlreadyExists = Players.FirstOrDefault(x => x.Name == player.Name);
+        //     var playerValidation = player.Validate();
 
 
-            if ((user.Profile == UserProfile.CBF)
-                && (Players.Count < 32)
-                && (playerAlreadyExists == null)
-                && (playerValidation.isValid))
-            {
-                Players.Add(player);
-                return true;                
-            }
-            return false;          
-        }
+        //     if ((user.Profile == UserProfile.CBF)
+        //         && (Players.Count < 32)
+        //         && (playerAlreadyExists == null)
+        //         && (playerValidation.isValid))
+        //     {
+        //         Players.Add(player);
+        //         return true;                
+        //     }
+        //     return false;          
+        // }
         
-        public bool RemovePlayer(string name, User user)
-        {
-            if (user.Profile == UserProfile.CBF)
-            {    
-                var RemovedPlayer = Players.First(x => x.Name == name);
-                Players.Remove(RemovedPlayer);
-                return true;
-            }
-            return false;
-        }
+        // public bool RemovePlayer(string name, User user)
+        // {
+        //     if (user.Profile == UserProfile.CBF)
+        //     {    
+        //         var RemovedPlayer = Players.First(x => x.Name == name);
+        //         Players.Remove(RemovedPlayer);
+        //         return true;
+        //     }
+        //     return false;
+        // }
 
-        public double GetEfficiency(int round, Team team, User user)
-        {
+        // public double GetEfficiency(int round, Team team, User user)
+        // {
             
-            int totalPossiblePoints = team.DisputedMatches * 3;
-            return team.Points / totalPossiblePoints * 100;
-        }
+        //     int totalPossiblePoints = team.DisputedMatches * 3;
+        //     return team.Points / totalPossiblePoints * 100;
+        // }
     
-        public static void LaunchScorerGoals(Team team, List<Player> scorers, User user)
-        {
-            foreach (var scorer in scorers)
-            {
-                Player p = team.Players.FirstOrDefault(x => x.Name == scorer.Name);
-                if (p != null) p.Goals += scorer.Goals;
-            }
-        }
+        // public static void LaunchScorerGoals(Team team, List<Player> scorers, User user)
+        // {
+        //     foreach (var scorer in scorers)
+        //     {
+        //         Player p = team.Players.FirstOrDefault(x => x.Name == scorer.Name);
+        //         if (p != null) p.Goals += scorer.Goals;
+        //     }
+        // }
     }
 }

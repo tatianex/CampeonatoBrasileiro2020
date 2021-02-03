@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Domain.Teams
 {
-    public class TeamsService : ITeamsService
+    public class TeamsService
     {
         private readonly ITeamsRepository _teamsRepository;
         public TeamsService(ITeamsRepository teamsRepository)

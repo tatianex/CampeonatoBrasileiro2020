@@ -38,9 +38,9 @@ namespace WebAPI.Controllers.Users
             }
 
             var response = _usersService.Create(
-                request.Name,
-                request.Email,
                 request.Profile,
+                request.Name,
+                request.Email,                
                 request.Password
             );
 
@@ -49,7 +49,7 @@ namespace WebAPI.Controllers.Users
                 return BadRequest(response.Errors);
             }
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpGet("{id}")]

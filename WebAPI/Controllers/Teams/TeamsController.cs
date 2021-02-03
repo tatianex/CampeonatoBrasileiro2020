@@ -10,9 +10,9 @@ namespace WebAPI.Controllers.Players
     [Route("[controller]")]
     public class TeamsController : ControllerBase
     {
-        public readonly ITeamsService _teamsService;
+        public readonly TeamsService _teamsService;
         public readonly IUsersService _usersService;
-        public TeamsController(IUsersService usersService, ITeamsService teamsService)
+        public TeamsController(IUsersService usersService, TeamsService teamsService)
         {
             _usersService = usersService;
             _teamsService = teamsService;
